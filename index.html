@@ -139,7 +139,7 @@ select.fi{background:#fff}
     <div id="topbar">
       <div style="font-size:14px;font-weight:700" id="ptitle">Dashboard</div>
       <div class="tb-r">
-        <button class="nb" onclick="navigate('/notifications')" style="position:relative">🔔<span id="notif-badge" style="display:none;position:absolute;top:-4px;right:-4px;background:#C62828;color:#fff;border-radius:50%;min-width:16px;height:16px;font-size:9px;font-weight:900;align-items:center;justify-content:center;padding:0 2px"></span></button>
+        <button class="nb" onclick="navigate('/notifications')" style="position:relative">🔔<span id="notif-badge"></span></button>
       <div class="uc" onclick="navigate('/profile')">
           <div class="ua" id="ua"></div>
           <div><div class="un" id="un"></div><div class="ur" id="urole"></div></div>
@@ -165,20 +165,20 @@ const ROLES={
   B2B_VIEWER:{l:'B2B VIEWER',e:'👁',c:'#8C8C6E',land:'/b2b/orders',n:'Paul Martin',d:'Portail lecture seule'},
 };
 const NAV={
-  OWNER:[{p:'/dashboard',l:'Dashboard',e:'🏠'},{p:'/catalog',l:'Catalogue',e:'📦'},{p:'/products',l:'Produits',e:'🗂'},{p:'/orders',l:'Commandes',e:'🛒'},{p:'/quotes',l:'Devis',e:'📄'},{p:'/customers',l:'Clients',e:'👥'},{p:'/discount-requests',l:'Remises',e:'%'},{p:'/suppliers',l:'Fournisseurs',e:'🚚'},{p:'/purchasing/alerts',l:'Achats',e:'⚡'},{p:'/inventory',l:'Stocks',e:'📊'},{p:'/inventory/alerts',l:'Alertes Stock',e:'🚨'},{p:'/invoices',l:'Factures',e:'🧾'},{p:'/returns',l:'Retours',e:'↩'},{p:'/pricing-grids',l:'Tarification',e:'💰'},{p:'/reports/dashboard',l:'Reporting',e:'📈'},{p:'/reports/revenue',l:'CA & Marges',e:'💰'},{p:'/reports/aging',l:'Balance Âgée',e:'⏳'},{p:'/reports/suppliers',l:'Perf. Fourn.',e:'🏭'},{p:'/notifications',l:'Notifications',e:'🔔'},{p:'/products/images',l:'Images Produits',e:'🖼️'},{p:'/imports/products',l:'Import CSV',e:'📥'},{p:'/pos/active',l:'Caisse Active',e:'💰'},{p:'/admin/users',l:'Utilisateurs',e:'👤'},{p:'/admin/settings',l:'Paramètres',e:'⚙️'},{p:'/admin/audit',l:'Audit Log',e:'📋'},{p:'/admin/sql',l:'Tables SQL',e:'🗄️'}],
-  MANAGER:[{p:'/dashboard',l:'Dashboard',e:'🏠'},{p:'/pos/sale',l:'Nouvelle Vente',e:'⚡'},{p:'/pos/active',l:'Caisse Active',e:'💰'},{p:'/orders',l:'Commandes',e:'🛒'},{p:'/quotes',l:'Devis',e:'📄'},{p:'/customers',l:'Clients',e:'👥'},{p:'/discount-requests',l:'Remises',e:'%'},{p:'/products',l:'Produits',e:'🗂'},{p:'/inventory',l:'Stocks',e:'📊'},{p:'/inventory/alerts',l:'Alertes Stock',e:'🚨'},{p:'/invoices',l:'Factures',e:'🧾'},{p:'/returns',l:'Retours',e:'↩'},{p:'/reports/dashboard',l:'Reporting',e:'📈'},{p:'/reports/revenue',l:'CA & Marges',e:'💰'},{p:'/reports/aging',l:'Balance Âgée',e:'⏳'},{p:'/notifications',l:'Notifications',e:'🔔'},{p:'/pos/close',l:'Clôture Caisse',e:'🔒'},{p:'/warehouse/dashboard',l:'Entrepôt',e:'📦'},{p:'/warehouse/bl-ocr',l:'OCR BL',e:'📷'},{p:'/supplier-orders',l:'BdC Fourn.',e:'📋'}],
+  OWNER:[{p:'/dashboard',l:'Dashboard',e:'🏠'},{p:'/pos/sale',l:'Nouvelle Vente',e:'⚡'},{p:'/catalog',l:'Catalogue',e:'📦'},{p:'/products',l:'Produits',e:'🗂'},{p:'/orders',l:'Commandes',e:'🛒'},{p:'/quotes',l:'Devis',e:'📄'},{p:'/customers',l:'Clients',e:'👥'},{p:'/discount-requests',l:'Remises',e:'%'},{p:'/suppliers',l:'Fournisseurs',e:'🚚'},{p:'/purchasing/alerts',l:'Achats',e:'⚡'},{p:'/inventory',l:'Stocks',e:'📊'},{p:'/inventory/alerts',l:'Alertes Stock',e:'🚨'},{p:'/invoices',l:'Factures',e:'🧾'},{p:'/returns',l:'Retours',e:'↩'},{p:'/pricing-grids',l:'Tarification',e:'💰'},{p:'/reports/dashboard',l:'Reporting',e:'📈'},{p:'/reports/revenue',l:'CA & Marges',e:'💰'},{p:'/reports/aging',l:'Balance Âgée',e:'⏳'},{p:'/reports/suppliers',l:'Perf. Fourn.',e:'🏭'},{p:'/notifications',l:'Notifications',e:'🔔'},{p:'/products/images',l:'Images Produits',e:'🖼️'},{p:'/imports/products',l:'Import CSV',e:'📥'},{p:'/pos/active',l:'Caisse Active',e:'💰'},{p:'/admin/users',l:'Utilisateurs',e:'👤'},{p:'/admin/settings',l:'Paramètres',e:'⚙️'},{p:'/admin/audit',l:'Audit Log',e:'📋'},{p:'/admin/sql',l:'Tables SQL',e:'🗄️'},{p:'/einvoice/drafts',l:'E-Factures',e:'🧾'},{p:'/einvoice/vat',l:'Rappr. TVA',e:'📊'},{p:'/einvoice/monitoring',l:'Monitoring RP',e:'📡'}],
+  MANAGER:[{p:'/dashboard',l:'Dashboard',e:'🏠'},{p:'/pos/sale',l:'Nouvelle Vente',e:'⚡'},{p:'/pos/active',l:'Caisse Active',e:'💰'},{p:'/orders',l:'Commandes',e:'🛒'},{p:'/quotes',l:'Devis',e:'📄'},{p:'/customers',l:'Clients',e:'👥'},{p:'/discount-requests',l:'Remises',e:'%'},{p:'/products',l:'Produits',e:'🗂'},{p:'/inventory',l:'Stocks',e:'📊'},{p:'/inventory/alerts',l:'Alertes Stock',e:'🚨'},{p:'/invoices',l:'Factures',e:'🧾'},{p:'/returns',l:'Retours',e:'↩'},{p:'/reports/dashboard',l:'Reporting',e:'📈'},{p:'/reports/revenue',l:'CA & Marges',e:'💰'},{p:'/reports/aging',l:'Balance Âgée',e:'⏳'},{p:'/notifications',l:'Notifications',e:'🔔'},{p:'/pos/close',l:'Clôture Caisse',e:'🔒'},{p:'/warehouse/dashboard',l:'Entrepôt',e:'📦'},{p:'/warehouse/bl-ocr',l:'OCR BL',e:'📷'},{p:'/supplier-orders',l:'BdC Fourn.',e:'📋'},{p:'/einvoice/drafts',l:'E-Factures',e:'🧾'},{p:'/einvoice/vat',l:'Rappr. TVA',e:'📊'},{p:'/einvoice/monitoring',l:'Monitoring RP',e:'📡'}],
   ADMIN:[{p:'/admin/users',l:'Utilisateurs',e:'👤'},{p:'/customers',l:'Clients',e:'👥'},{p:'/suppliers',l:'APIs Fourn.',e:'🔌'},{p:'/pricing-grids',l:'Tarification',e:'💰'},{p:'/admin/settings',l:'Paramètres',e:'⚙️'},{p:'/admin/audit',l:'Audit Log',e:'📋'}],
   COUNTER:[{p:'/pos/sale',l:'Nouvelle Vente',e:'⚡'},{p:'/pos/active',l:'Caisse Active',e:'💰'},{p:'/catalog',l:'Catalogue',e:'📦'},{p:'/quotes',l:'Devis',e:'📄'},{p:'/orders',l:'Mes Tickets',e:'🧾'},{p:'/notifications',l:'Notifications',e:'🔔'},{p:'/pos/close',l:'Clôture Caisse',e:'🔒'}],
   WAREHOUSE:[{p:'/warehouse/dashboard',l:'Dashboard',e:'🌅'},{p:'/warehouse/reception',l:'Réception',e:'📥'},{p:'/warehouse/bl-ocr',l:'OCR BL',e:'📷'},{p:'/warehouse/picking',l:'Picking',e:'📋'},{p:'/warehouse/deliveries',l:'Livraisons',e:'🚚'},{p:'/inventory',l:'Stocks',e:'📊'},{p:'/inventory/zone',l:'Inventaire Zone',e:'🔍'}],
   PURCHASER:[{p:'/purchasing/alerts',l:'Alertes Stock',e:'🚨'},{p:'/purchasing/compare',l:'Comparaison',e:'⚖️'},{p:'/supplier-orders',l:'Bons de Commande',e:'📋'},{p:'/purchasing/ocr',l:'Import OCR',e:'🔬'},{p:'/imports/supplier-catalog',l:'Import Catalogue',e:'📥'},{p:'/reports/suppliers',l:'Perf. Fourn.',e:'🏭'},{p:'/supplier-returns',l:'Retours Fourn.',e:'↩'},{p:'/notifications',l:'Notifications',e:'🔔'}],
-  ACCOUNTING:[{p:'/invoices',l:'Factures',e:'🧾'},{p:'/credit-notes',l:'Avoirs',e:'📝'},{p:'/payments',l:'Paiements',e:'💳'},{p:'/exports',l:'Exports',e:'📤'},{p:'/reports/fec',l:'Export FEC',e:'🔢'},{p:'/reports/aging',l:'Balance Âgée',e:'⏳'},{p:'/b2b/statement',l:'Relevé B2B',e:'📋'}],
+  ACCOUNTING:[{p:'/invoices',l:'Factures',e:'🧾'},{p:'/credit-notes',l:'Avoirs',e:'📝'},{p:'/payments',l:'Paiements',e:'💳'},{p:'/exports',l:'Exports',e:'📤'},{p:'/reports/fec',l:'Export FEC',e:'🔢'},{p:'/reports/aging',l:'Balance Âgée',e:'⏳'},{p:'/b2b/statement',l:'Relevé B2B',e:'📋'},{p:'/einvoice/drafts',l:'E-Factures',e:'🧾'},{p:'/einvoice/vat',l:'Rappr. TVA',e:'📊'},{p:'/einvoice/monitoring',l:'Monitoring RP',e:'📡'}],
   B2B_OWNER:[{p:'/b2b/catalog',l:'Catalogue',e:'📦'},{p:'/b2b/orders',l:'Commandes',e:'🛒'},{p:'/b2b/invoices',l:'Factures',e:'🧾'},{p:'/b2b/statement',l:'Relevé de Compte',e:'📋'},{p:'/notifications',l:'Notifications',e:'🔔'},{p:'/b2b/account',l:'Mon Compte',e:'🏢'}],
   B2B_BUYER:[{p:'/b2b/catalog',l:'Catalogue',e:'📦'},{p:'/b2b/orders',l:'Mes Commandes',e:'🛒'}],
   B2B_VIEWER:[{p:'/b2b/orders',l:'Commandes',e:'📄'},{p:'/b2b/invoices',l:'Factures',e:'🧾'}],
 };
 let PRODS=[
   // ── STOCK INTERNE ──────────────────────────────────────────────────────────
-  {id:'p1',sku:'BRK-BOS-001',n:'Bosch Plaquettes Avant',br:'Bosch',cat:'Freinage',ean:'4047024743234',ref:'0986494524',buy:8.5,cof:2.8,stk:12,mn:5,z:'A',al:'3',sh:'B',em:'🛞',dep:0,active:true,pos:'Avant',specs:'Kit 4 plaquettes · Épaisseur 15mm',sup_ref:'BP-BOC-0986'},
+  {id:'p1',sku:'BRK-BOS-001',n:'Bosch Plaquettes Avant',br:'Bosch',cat:'Freinage',ean:'4047024743234',ref:'0986494524',buy:8.5,cof:2.8,stk:12,mn:5,z:'A',al:'3',sh:'B',em:'🛞',dep:0,active:true},
   {id:'p2',sku:'BRK-BRE-002',n:'Brembo Disques Avant Ø288',br:'Brembo',cat:'Freinage',ean:'8020584056509',ref:'09.A427.1X',buy:32,cof:2.5,stk:4,mn:3,z:'A',al:'3',sh:'C',em:'💿',dep:0,active:true},
   {id:'p3',sku:'FIL-MAN-003',n:'Mann Filtre à Huile HU719',br:'Mann-Filter',cat:'Filtration',ean:'4011558726690',ref:'HU 719/7 x',buy:4.2,cof:3.0,stk:28,mn:10,z:'B',al:'1',sh:'A',em:'🔧',dep:0,active:true},
   {id:'p4',sku:'ALT-VAL-004',n:'Alternateur Valeo 120A',br:'Valeo',cat:'Électrique',ean:'3276428999018',ref:'439674',buy:85,cof:2.2,stk:2,mn:2,z:'C',al:'2',sh:'D',em:'⚡',dep:45,active:true},
@@ -484,12 +484,20 @@ function toggleSB(){
   Q('sidebar').classList.toggle('slim',!SB);
   Q('sl-btn').textContent=SB?'◀ Réduire':'▶ Étendre';
 }
+function updateNotifBadge(){
+  const el=Q('notif-badge');if(!el)return;
+  const cnt=NOTIFICATIONS.filter(n=>!n.read).length;
+  if(cnt>0){
+    el.innerHTML=`<span style="position:absolute;top:-4px;right:-4px;background:#C62828;color:#fff;border-radius:50%;min-width:16px;height:16px;font-size:9px;font-weight:900;display:flex;align-items:center;justify-content:center;padding:0 2px">${cnt>9?'9+':cnt}</span>`;
+  } else { el.innerHTML=''; }
+}
 function navigate(p){
   PAGE=p;
   const nav=NAV[ROLE]||[];
   const it=nav.find(n=>n.p===p);
   Q('ptitle').textContent=it?it.l:p.split('/').filter(Boolean).pop()||'Dashboard';
   document.querySelectorAll('.ni').forEach(el=>el.classList.toggle('on',el.dataset.p===p));
+  updateNotifBadge();
   renderPage();
 }
 function showNotifs(){openM('Notifications',`
@@ -557,6 +565,10 @@ function renderPage(){
     '/notifications':screenNotifications,
     '/pos/active':screenPosActive,
     '/admin/sql':screenSQL,
+    // Part L — E-Facturation
+    '/einvoice/drafts':screenEInvoiceDrafts,
+    '/einvoice/vat':screenVATReconciliation,
+    '/einvoice/monitoring':screenEReportingMonitor,
   };
   const fn=map[PAGE];
   if(fn)fn();
@@ -619,280 +631,294 @@ function screenDashboard(){
       <div style="display:flex;gap:8px">${bdg(o.status)}<span class="f7">${fmt(o.ttc)}</span></div>
     </div>`).join('')}</div>`);return;
   }
-  // OWNER / MANAGER
+  // OWNER / MANAGER — DASHBOARD COMPLET
   const pending=DISCOUNTS.filter(d=>d.status==='PENDING_APPROVAL');
-  const todayOrders=ORDERS.filter(o=>o.date&&o.date.includes('28/02'));
-  const caAujourdhui=todayOrders.reduce((s,o)=>s+o.ttc,0)||4821;
-  const lastM=REVENUE_DATA[REVENUE_DATA.length-1];
-  const prevM=REVENUE_DATA[REVENUE_DATA.length-2];
-  const evolCA=prevM?((lastM.ca-prevM.ca)/prevM.ca*100).toFixed(1):0;
-  const maxCA=Math.max(...REVENUE_DATA.map(r=>r.ca));
-  const totalOverdue=AGING_BUCKETS.reduce((s,b)=>s+b.overdue,0);
-  const critAlerts=ALERTS.filter(a=>a.status==='ACTIVE'&&a.level==='CRITIQUE');
+  const activeAlerts=ALERTS.filter(a=>a.status==='ACTIVE');
+  const critAlerts=activeAlerts.filter(a=>a.pri==='CRITICAL');
   const unreadNotifs=NOTIFICATIONS.filter(n=>!n.read);
-  const topP=TOP_PRODUCTS.slice(0,5);
-  const posOpen=POS_SESSION&&POS_SESSION.status==='OPEN';
+  const totalOverdue=AGING_BUCKETS.reduce((s,c)=>s+c.overdue,0);
+  const totalBal=CUSTOMERS.reduce((s,c)=>s+c.bal,0);
+  const caMonth=REVENUE_DATA.slice(-1)[0]||{ca:0,margin:0,orders:0,avg:0};
+  const caPrev=REVENUE_DATA.length>=2?REVENUE_DATA[REVENUE_DATA.length-2]:{ca:0};
+  const evolPct=caPrev.ca>0?((caMonth.ca-caPrev.ca)/caPrev.ca*100):0;
+  const marginPct=caMonth.ca>0?(caMonth.margin/caMonth.ca*100):0;
+  const maxCA=Math.max(...REVENUE_DATA.map(r=>r.ca));
+  const stockValue=PRODS.filter(p=>p.active).reduce((s,p)=>s+p.buy*p.stk,0);
+  const stockSellValue=PRODS.filter(p=>p.active).reduce((s,p)=>s+p.buy*p.cof*p.stk,0);
+  const ordPending=ORDERS.filter(o=>o.status!=='DELIVERED'&&o.status!=='CANCELLED');
+  const pendSupOrd=SUP_ORDERS.filter(o=>o.status!=='RECEIVED');
+  const bestSup=SUP_PERF.reduce((a,b)=>a.scoreRaw>b.scoreRaw?a:b,SUP_PERF[0]);
+  const worstSup=SUP_PERF.reduce((a,b)=>a.scoreRaw<b.scoreRaw?a:b,SUP_PERF[0]);
+  const quotesOpen=QUOTES.filter(q=>q.status==='SENT'||q.status==='DRAFT');
+  const invoicesUnpaid=INVOICES.filter(i=>i.status!=='PAID');
+  const deadStock=TOP_PRODUCTS.filter(p=>p.lastSold>30);
+  const lastSession=POS_SESSIONS[0];
   setContent(`
-  <!-- HEADER -->
-  <div class="ph" style="display:flex;justify-content:space-between;align-items:center">
-    <div>
-      <div class="ptit">Dashboard ${ROLES[r].l}</div>
-      <div class="psub">28 Février 2026 · Bonjour ${ROLES[r].n} 👋</div>
-    </div>
-    <div style="display:flex;gap:8px;align-items:center">
-      ${posOpen?`<span style="background:#E8F5E9;color:#2E7D32;padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700;border:1px solid #2E7D3230">🟢 Caisse ouverte · ${fmt(POS_SESSION.openFloat)} fond</span>`:`<span style="background:#FFEBEE;color:#C62828;padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700;border:1px solid #C6282830">🔴 Caisse fermée</span>`}
-      ${unreadNotifs.length?`<button class="btn" onclick="navigate('/notifications')" style="background:#FFF3E0;border:1px solid #FFB74D;color:#E65100;padding:5px 10px;border-radius:8px;font-size:11px;font-weight:700">🔔 ${unreadNotifs.length} non lue${unreadNotifs.length>1?'s':''}</button>`:''}
+  <div class="ph"><div><div class="ptit">Dashboard ${ROLES[r].l}</div><div class="psub">28 Février 2026 · ${unreadNotifs.length} notification${unreadNotifs.length>1?'s':''} non lue${unreadNotifs.length>1?'s':''}</div></div>
+    <div style="display:flex;gap:6px">
+      ${r!=='B2B_VIEWER'&&r!=='B2B_BUYER'?`<button class="btn bp bsm" onclick="navigate('/pos/sale')">⚡ Nouvelle Vente</button>`:''}
+      <button class="btn bs bsm" onclick="navigate('/reports/dashboard')">📈 Reporting</button>
     </div>
   </div>
 
-  <!-- KPI ROW (6 cards) -->
-  <div class="sg" style="grid-template-columns:repeat(6,1fr);gap:8px">
-    <div class="sc" onclick="navigate('/orders')" style="cursor:pointer">
-      <div class="si" style="background:#1565C020">💰</div>
-      <div class="sl">CA AUJOURD'HUI</div>
-      <div class="sv" style="color:#1565C0">${fmt(caAujourdhui)}</div>
-      <div class="ss">↑ +12% vs hier</div>
-    </div>
-    <div class="sc" onclick="navigate('/reports/revenue')" style="cursor:pointer">
-      <div class="si" style="background:#2E7D3220">📈</div>
-      <div class="sl">MARGE MOIS</div>
-      <div class="sv" style="color:#2E7D32">€${(lastM.margin/1000).toFixed(1)}K</div>
-      <div class="ss">Taux: ${(lastM.margin/lastM.ca*100).toFixed(1)}%</div>
-    </div>
-    <div class="sc" onclick="navigate('/orders')" style="cursor:pointer">
-      <div class="si" style="background:#1565C020">🛒</div>
-      <div class="sl">COMMANDES EN COURS</div>
-      <div class="sv" style="color:#1565C0">${ORDERS.filter(o=>['CONFIRMED','PROCESSING','READY'].includes(o.status)).length}</div>
-      <div class="ss">${ORDERS.filter(o=>o.status==='PARTIALLY_DELIVERED').length} partielles</div>
-    </div>
-    <div class="sc" onclick="navigate('/discount-requests')" style="cursor:pointer">
-      <div class="si" style="background:#E6510020">%</div>
-      <div class="sl">REMISES EN ATTENTE</div>
-      <div class="sv" style="color:#E65100">${pending.length}</div>
-      <div class="ss">${pending.filter(d=>d.pct>15).length} > 15% (OWNER)</div>
-    </div>
-    <div class="sc" onclick="navigate('/inventory/alerts')" style="cursor:pointer">
-      <div class="si" style="background:#C6282820">🚨</div>
-      <div class="sl">ALERTES STOCK</div>
-      <div class="sv" style="color:#C62828">${ALERTS.filter(a=>a.status==='ACTIVE').length}</div>
-      <div class="ss" style="color:${critAlerts.length?'#C62828':'#888'}">${critAlerts.length} critique${critAlerts.length>1?'s':''}</div>
-    </div>
-    <div class="sc" onclick="navigate('/reports/aging')" style="cursor:pointer">
-      <div class="si" style="background:#7B1FA220">⏳</div>
-      <div class="sl">IMPAYÉS</div>
-      <div class="sv" style="color:#C62828">${fmt(totalOverdue)}</div>
-      <div class="ss">${AGING_BUCKETS.filter(b=>b.overdue>0).length} clients</div>
-    </div>
+  <!-- ═══ KPI CARDS ROW 1 ═══ -->
+  <div class="sg" style="grid-template-columns:repeat(auto-fit,minmax(140px,1fr))">
+    <div class="sc" onclick="navigate('/orders')" style="cursor:pointer"><div class="si" style="background:#1565C020">📊</div><div class="sl">CA MOIS EN COURS</div><div class="sv" style="color:#1565C0">€${(caMonth.ca/1000).toFixed(1)}k</div><div class="ss">${evolPct>=0?'↑':'↓'} ${Math.abs(evolPct).toFixed(0)}% vs mois préc.</div></div>
+    <div class="sc" onclick="navigate('/orders')"><div class="si" style="background:#2E7D3220">💰</div><div class="sl">MARGE BRUTE</div><div class="sv" style="color:#2E7D32">€${(caMonth.margin/1000).toFixed(1)}k</div><div class="ss">Taux: ${marginPct.toFixed(1)}%</div></div>
+    <div class="sc" onclick="navigate('/orders')"><div class="si" style="background:#E6510020">🛒</div><div class="sl">COMMANDES EN COURS</div><div class="sv" style="color:#E65100">${ordPending.length}</div><div class="ss">${caMonth.orders} ce mois · Ø €${caMonth.avg}</div></div>
+    <div class="sc" onclick="navigate('/discount-requests')"><div class="si" style="background:#FF980020">%</div><div class="sl">REMISES EN ATTENTE</div><div class="sv" style="color:#FF9800">${pending.length}</div><div class="ss">Approbation requise</div></div>
+    <div class="sc" onclick="navigate('/inventory/alerts')"><div class="si" style="background:#C6282820">🚨</div><div class="sl">ALERTES STOCK</div><div class="sv" style="color:#C62828">${activeAlerts.length}</div><div class="ss">${critAlerts.length} critique${critAlerts.length>1?'s':''}</div></div>
+    <div class="sc" onclick="navigate('/reports/aging')"><div class="si" style="background:#7B1FA220">⏳</div><div class="sl">IMPAYÉS</div><div class="sv" style="color:#7B1FA2">€${totalOverdue.toLocaleString()}</div><div class="ss">${AGING_BUCKETS.filter(c=>c.overdue>0).length} clients</div></div>
   </div>
 
-  <!-- ROW 2: Chart CA + Top produits -->
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
+  <!-- ═══ KPI CARDS ROW 2 ═══ -->
+  <div class="sg" style="grid-template-columns:repeat(auto-fit,minmax(140px,1fr))">
+    <div class="sc"><div class="si" style="background:#00897B20">📦</div><div class="sl">VALEUR STOCK ACHAT</div><div class="sv" style="color:#00897B">€${(stockValue/1000).toFixed(1)}k</div><div class="ss">Vente: €${(stockSellValue/1000).toFixed(1)}k</div></div>
+    <div class="sc" onclick="navigate('/quotes')"><div class="si" style="background:#5C6BC020">📄</div><div class="sl">DEVIS OUVERTS</div><div class="sv" style="color:#5C6BC0">${quotesOpen.length}</div><div class="ss">${QUOTES.filter(q=>q.status==='ACCEPTED').length} accepté(s)</div></div>
+    <div class="sc" onclick="navigate('/invoices')"><div class="si" style="background:#EF6C0020">🧾</div><div class="sl">FACTURES NON RÉGLÉES</div><div class="sv" style="color:#EF6C00">${invoicesUnpaid.length}</div><div class="ss">€${invoicesUnpaid.reduce((s,i)=>s+i.ttc,0).toFixed(0)} TTC</div></div>
+    <div class="sc" onclick="navigate('/supplier-orders')"><div class="si" style="background:#1565C020">🚚</div><div class="sl">BdC FOURNISSEURS</div><div class="sv" style="color:#1565C0">${pendSupOrd.length}</div><div class="ss">En cours / en attente</div></div>
+    <div class="sc"><div class="si" style="background:#C6282820">💀</div><div class="sl">STOCK MORT</div><div class="sv" style="color:#C62828">${deadStock.length}</div><div class="ss">0 vente depuis 30j+</div></div>
+    <div class="sc" onclick="navigate('/notifications')"><div class="si" style="background:#D32F2F20">🔔</div><div class="sl">NOTIFICATIONS</div><div class="sv" style="color:#D32F2F">${unreadNotifs.length}</div><div class="ss">${unreadNotifs.filter(n=>n.pri==='CRITICAL').length} critiques</div></div>
+  </div>
 
-    <!-- Sparkline CA 6 mois -->
-    <div class="card">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
-        <div class="muted f11 f7">CA & MARGE — 6 DERNIERS MOIS</div>
-        <button class="btn bg bsm" onclick="navigate('/reports/revenue')">Détail →</button>
-      </div>
-      <div style="display:flex;align-items:flex-end;gap:6px;height:70px">
-        ${REVENUE_DATA.map(r=>{
-          const h=Math.round((r.ca/maxCA)*70);
-          const mh=Math.round((r.margin/maxCA)*70);
-          return `<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;justify-content:flex-end">
-            <div style="display:flex;gap:2px;align-items:flex-end">
-              <div style="width:10px;height:${h}px;background:#1565C0;border-radius:3px 3px 0 0;opacity:.85" title="CA: €${r.ca}"></div>
-              <div style="width:8px;height:${mh}px;background:#2E7D32;border-radius:3px 3px 0 0;opacity:.7" title="Marge: €${r.margin}"></div>
+  <!-- ═══ REVENUE CHART ═══ -->
+  <div class="card">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+      <div class="muted f11 f7">📈 CHIFFRE D'AFFAIRES MENSUEL (6 DERNIERS MOIS)</div>
+      <button class="btn bg bsm" onclick="navigate('/reports/revenue')">Détails →</button>
+    </div>
+    <div style="display:flex;align-items:flex-end;gap:6px;height:130px;padding:4px 0">
+      ${REVENUE_DATA.map(r=>{
+        const h=maxCA>0?Math.max(8,(r.ca/maxCA)*120):8;
+        const mh=maxCA>0?Math.max(4,(r.margin/maxCA)*120):4;
+        return `<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:0">
+          <div style="font-size:9px;font-weight:700;color:#1565C0;margin-bottom:2px">€${(r.ca/1000).toFixed(1)}k</div>
+          <div style="position:relative;width:100%;display:flex;justify-content:center">
+            <div style="width:70%;height:${h}px;background:linear-gradient(180deg,#1565C0,#1976D2);border-radius:4px 4px 0 0;position:relative">
+              <div style="position:absolute;bottom:0;left:10%;width:80%;height:${mh}px;background:#2E7D32;border-radius:3px 3px 0 0;opacity:.7"></div>
             </div>
-            <div style="font-size:9px;color:#999">${r.month}</div>
-          </div>`;
-        }).join('')}
-      </div>
-      <div style="display:flex;gap:16px;margin-top:8px">
-        <span style="font-size:10px;color:#1565C0">■ CA</span>
-        <span style="font-size:10px;color:#2E7D32">■ Marge</span>
-        <span style="font-size:10px;color:${evolCA>0?'#2E7D32':'#C62828'};font-weight:700;margin-left:auto">${evolCA>0?'↑':'↓'} ${Math.abs(evolCA)}% vs M-1</span>
-      </div>
-    </div>
-
-    <!-- Top produits -->
-    <div class="card">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
-        <div class="muted f11 f7">TOP 5 PRODUITS (CA)</div>
-        <button class="btn bg bsm" onclick="navigate('/reports/products')">Voir tout →</button>
-      </div>
-      ${topP.map((p,i)=>{
-        const barW=Math.round(p.ca/topP[0].ca*100);
-        return `<div style="margin-bottom:7px">
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:2px">
-            <span style="font-size:11px;font-weight:600;color:#1A1A2E">${i+1}. ${ell(p.n,24)}</span>
-            <span style="font-size:11px;font-weight:800;color:#1565C0">${fmt(p.ca)}</span>
           </div>
-          <div style="height:4px;background:#F0F0F4;border-radius:2px">
-            <div style="height:100%;width:${barW}%;background:#1565C0;border-radius:2px;opacity:.7"></div>
-          </div>
-          <div style="font-size:10px;color:#888;margin-top:1px">${p.sold} vendus · marge ${fmt(p.margin)} · stock ${p.lastSold>30?'<span style="color:#C62828;font-weight:700">⚠️ mort</span>':'ok'}</div>
+          <div style="font-size:10px;color:#888;margin-top:4px;font-weight:600">${r.month}</div>
         </div>`;
       }).join('')}
+    </div>
+    <div style="display:flex;gap:14px;justify-content:center;margin-top:6px;font-size:10px;color:#888">
+      <span><span style="display:inline-block;width:10px;height:10px;background:#1565C0;border-radius:2px;vertical-align:middle;margin-right:3px"></span>CA HT</span>
+      <span><span style="display:inline-block;width:10px;height:10px;background:#2E7D32;border-radius:2px;vertical-align:middle;margin-right:3px"></span>Marge</span>
     </div>
   </div>
 
-  <!-- ROW 3: Commandes + Remises + Notifications + Fournisseurs -->
-  <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px;margin-bottom:12px">
-
-    <!-- Dernières commandes -->
-    <div class="card">
-      <div class="muted f11 f7 mb2">DERNIÈRES COMMANDES</div>
-      ${ORDERS.slice(0,5).map(o=>`<div onclick="navigate('/orders/${o.id}')" style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid #F5F5FA;cursor:pointer">
-        <div>
-          <div class="mono f7 f11" style="color:#1565C0">${o.num}</div>
-          <div class="muted f11">${ell(o.cust,14)}</div>
-        </div>
-        <div style="text-align:right">
-          ${bdg(o.status)}
-          <div class="f7 f11" style="margin-top:2px">${fmt(o.ttc)}</div>
-        </div>
-      </div>`).join('')}
-      <button class="btn bg bsm m1" onclick="navigate('/orders')">Voir toutes →</button>
-    </div>
-
-    <!-- Remises à approuver -->
-    <div class="card">
-      <div class="muted f11 f7 mb2">REMISES À APPROUVER</div>
-      ${pending.length?pending.slice(0,4).map(d=>`<div style="padding:8px;background:#FFF3E0;border-radius:7px;margin-bottom:6px">
-        <div style="display:flex;justify-content:space-between;align-items:center">
-          <span style="font-size:12px;font-weight:600">${ell(d.cust,14)}</span>
-          <span style="font-size:13px;font-weight:900;color:#E65100">${d.pct}%</span>
-        </div>
-        <div class="muted f11" style="margin:3px 0">${ell(d.reason,28)}</div>
-        <div style="display:flex;gap:5px;margin-top:5px">
-          ${(ROLE==='OWNER'||d.pct<=15)?`<button class="btn bp bsm" style="flex:1;font-size:10px" onclick="approveDisc('${d.id}')">✓ OK</button>`:`<span style="font-size:10px;color:#C62828;padding:3px 6px;background:#FFEBEE;border-radius:4px;font-weight:700">OWNER requis</span>`}
-          <button class="btn bd bsm" style="flex:1;font-size:10px" onclick="rejectDisc('${d.id}')">✕</button>
-        </div>
-      </div>`).join(''):'<div class="muted f12 mt2">Aucune remise en attente ✓</div>'}
-      ${pending.length>4?`<div class="muted f11 mt1">+${pending.length-4} autres</div>`:''}
-    </div>
-
-    <!-- Notifications récentes -->
+  <div class="g2">
+    <!-- ═══ DERNIÈRES COMMANDES ═══ -->
     <div class="card">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
-        <div class="muted f11 f7">NOTIFICATIONS</div>
-        <button class="btn bg bsm" onclick="navigate('/notifications')">Tout voir</button>
+        <div class="muted f11 f7">🛒 DERNIÈRES COMMANDES</div>
+        <button class="btn bg bsm" onclick="navigate('/orders')">Tout →</button>
       </div>
-      ${NOTIFICATIONS.slice(0,5).map(n=>{
-        const priCol={HIGH:'#E65100',CRITICAL:'#C62828',INFO:'#1565C0',MEDIUM:'#555'}[n.pri]||'#555';
-        const icons={DISCOUNT:'%',STOCK:'📦',ORDER:'🛒',DELIVERY:'🚚',INVOICE:'🧾',SYSTEM:'⚙️'};
-        return `<div onclick="navigate('${n.link}')" style="display:flex;gap:8px;align-items:start;padding:6px 0;border-bottom:1px solid #F5F5FA;cursor:pointer;opacity:${n.read?'.6':'1'}">
-          <span style="font-size:14px;flex-shrink:0">${icons[n.type]||'🔔'}</span>
-          <div style="flex:1;min-width:0">
-            <div style="font-size:11px;font-weight:${n.read?'400':'700'};color:#1A1A2E;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${n.msg}</div>
-            <div style="font-size:10px;color:${priCol};font-weight:700">${n.pri} · ${n.date}</div>
-          </div>
-        </div>`;
-      }).join('')}
+      ${ORDERS.slice(0,5).map(o=>`<div onclick="navigate('/orders/${o.id}')" style="display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid #F5F5FA;cursor:pointer">
+        <div><span class="mono f7 f12" style="color:#1565C0">${o.num}</span> <span class="muted f11">${ell(o.cust,18)}</span></div>
+        <div style="display:flex;gap:7px;align-items:center">${bdg(o.status)}<span class="f7 f12">${fmt(o.ttc)}</span></div>
+      </div>`).join('')}
     </div>
 
-    <!-- Perf fournisseurs -->
+    <!-- ═══ REMISES À APPROUVER ═══ -->
     <div class="card">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
-        <div class="muted f11 f7">PERF. FOURNISSEURS</div>
-        <button class="btn bg bsm" onclick="navigate('/reports/suppliers')">Détail →</button>
+        <div class="muted f11 f7">% REMISES EN ATTENTE</div>
+        <button class="btn bg bsm" onclick="navigate('/discount-requests')">Tout →</button>
+      </div>
+      ${pending.length?pending.map(d=>`<div style="padding:10px;background:#FFF3E0;border-radius:8px;margin-bottom:8px">
+        <div style="display:flex;justify-content:space-between"><span class="f7 f12">${d.cust}</span><span class="f8 f13" style="color:#E65100">${d.pct}%</span></div>
+        <div class="muted f11 m1">${d.reason} — par ${d.by}</div>
+        <div style="display:flex;gap:6px;margin-top:8px">
+          <button class="btn bp bsm" onclick="approveDisc('${d.id}')">✓ Approuver</button>
+          <button class="btn bd bsm" onclick="rejectDisc('${d.id}')">✕ Refuser</button>
+        </div>
+      </div>`).join(''):'<div class="muted f12" style="padding:14px 0;text-align:center">Aucune remise en attente ✅</div>'}
+    </div>
+  </div>
+
+  <div class="g2">
+    <!-- ═══ TOP PRODUITS ═══ -->
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+        <div class="muted f11 f7">🏆 TOP PRODUITS (VENTES)</div>
+        <button class="btn bg bsm" onclick="navigate('/reports/products')">Détails →</button>
+      </div>
+      <div class="tw"><table class="tbl">
+        <thead><tr><th>Produit</th><th>Vendus</th><th>CA HT</th><th>Marge</th><th>Rot.</th></tr></thead>
+        <tbody>${TOP_PRODUCTS.slice(0,5).map(p=>{
+          const mPct=p.ca>0?(p.margin/p.ca*100):0;
+          return `<tr>
+            <td><span class="f7 f12">${ell(p.n,22)}</span><br><span class="muted f11 mono">${p.sku}</span></td>
+            <td class="f7">${p.sold}</td>
+            <td class="f7">${fmt(p.ca)}</td>
+            <td><span style="color:${mPct>25?'#2E7D32':mPct>15?'#E65100':'#C62828'};font-weight:700;font-size:12px">${mPct.toFixed(0)}%</span></td>
+            <td>${p.rot.toFixed(0)}j</td>
+          </tr>`;
+        }).join('')}</tbody>
+      </table></div>
+      ${deadStock.length?`<div style="background:#FEF2F2;border:1px solid #FFCDD2;border-radius:8px;padding:8px;font-size:11px;color:#C62828">💀 <b>${deadStock.length} produit(s) en stock mort</b> (0 vente 30j+): ${deadStock.map(p=>p.sku).join(', ')}</div>`:''}
+    </div>
+
+    <!-- ═══ ALERTES STOCK ═══ -->
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+        <div class="muted f11 f7">🚨 ALERTES STOCK ACTIVES</div>
+        <button class="btn bg bsm" onclick="navigate('/inventory/alerts')">Tout →</button>
+      </div>
+      ${activeAlerts.length?activeAlerts.map(a=>{
+        const cols={CRITICAL:'#C62828',HIGH:'#E65100',MEDIUM:'#FF9800',LOW:'#888'};
+        const bgs={CRITICAL:'#FEF2F2',HIGH:'#FFF3E0',MEDIUM:'#FFFDE7',LOW:'#F5F5FA'};
+        return `<div style="padding:8px 10px;background:${bgs[a.pri]};border-radius:8px;margin-bottom:6px;border-left:3px solid ${cols[a.pri]}">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div><span class="f7 f12">${ell(a.prod,24)}</span> <span class="muted f11 mono">${a.sku}</span></div>
+            <span class="bdg" style="background:${cols[a.pri]}20;color:${cols[a.pri]}">${a.pri}</span>
+          </div>
+          <div class="muted f11" style="margin-top:3px">Stock: <b style="color:${a.stk===0?'#C62828':'#E65100'}">${a.stk}u</b> / Seuil: ${a.mn}u · ${a.date}</div>
+        </div>`;
+      }).join(''):'<div class="muted f12" style="padding:14px 0;text-align:center">Aucune alerte active ✅</div>'}
+    </div>
+  </div>
+
+  <div class="g2">
+    <!-- ═══ PERFORMANCE FOURNISSEURS ═══ -->
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+        <div class="muted f11 f7">🏭 PERFORMANCE FOURNISSEURS</div>
+        <button class="btn bg bsm" onclick="navigate('/reports/suppliers')">Détails →</button>
       </div>
       ${SUP_PERF.slice(0,5).map(s=>{
-        const scoreCol=s.score==='A+'?'#2E7D32':s.score.startsWith('A')?'#1565C0':s.score.startsWith('B')?'#E65100':'#C62828';
-        return `<div style="display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:1px solid #F5F5FA">
-          <div style="width:30px;height:30px;border-radius:50%;background:${scoreCol}20;border:2px solid ${scoreCol}40;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:900;color:${scoreCol};flex-shrink:0">${s.score}</div>
-          <div style="flex:1;min-width:0">
-            <div style="font-size:11px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${s.n}</div>
-            <div style="height:3px;background:#F0F0F4;border-radius:2px;margin-top:3px">
-              <div style="height:100%;width:${s.scoreRaw}%;background:${scoreCol};border-radius:2px"></div>
+        const col=s.scoreRaw>=95?'#2E7D32':s.scoreRaw>=90?'#1565C0':s.scoreRaw>=85?'#E65100':'#C62828';
+        const pct=Math.min(s.scoreRaw,100);
+        return `<div style="padding:7px 0;border-bottom:1px solid #F5F5FA">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div>
+              <span class="f7 f12">${s.n}</span>
+              ${s.api?'<span class="bdg" style="background:#E3F2FD;color:#1565C0;font-size:9px;margin-left:4px">API</span>':'<span class="bdg" style="background:#F5F5FA;color:#888;font-size:9px;margin-left:4px">Manuel</span>'}
             </div>
+            <span style="font-weight:900;font-size:14px;color:${col}">${s.score}</span>
           </div>
-          <div style="font-size:10px;color:#888;flex-shrink:0">${s.delivOnTime}%</div>
+          <div style="display:flex;gap:12px;font-size:10px;color:#888;margin-top:3px">
+            <span>Ponctualité: ${s.delivOnTime}%</span>
+            <span>Taux remplis.: ${s.fillRate}%</span>
+            <span>Délai moy: ${s.avgDelay}j</span>
+          </div>
+          <div style="height:3px;background:#E8E8EC;border-radius:2px;margin-top:4px;overflow:hidden"><div style="height:100%;width:${pct}%;background:${col};border-radius:2px"></div></div>
+        </div>`;
+      }).join('')}
+    </div>
+
+    <!-- ═══ BALANCE ÂGÉE / CLIENTS ═══ -->
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+        <div class="muted f11 f7">⏳ BALANCE ÂGÉE — TOP CRÉANCES</div>
+        <button class="btn bg bsm" onclick="navigate('/reports/aging')">Détails →</button>
+      </div>
+      ${AGING_BUCKETS.filter(c=>c.total>0).sort((a,b)=>b.total-a.total).slice(0,5).map(c=>{
+        const maxT=Math.max(...AGING_BUCKETS.map(x=>x.total));
+        return `<div style="padding:7px 0;border-bottom:1px solid #F5F5FA">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div><span class="f7 f12">${c.cust}</span> <span class="bdg" style="background:${{Gold:'#FFF8E1',Silver:'#F5F5FA',Bronze:'#FBE9E7'}[c.grp]||'#F5F5FA'};color:${{Gold:'#F57F17',Silver:'#666',Bronze:'#BF360C'}[c.grp]||'#888'};font-size:9px">${c.grp}</span></div>
+            <span class="f7 f12">€${c.total}</span>
+          </div>
+          <div style="display:flex;height:6px;border-radius:3px;overflow:hidden;margin-top:4px;background:#F0F0F4">
+            ${c.b0>0?`<div style="width:${c.b0/c.total*100}%;background:#2E7D32" title="Courant: €${c.b0}"></div>`:''}
+            ${c.b30>0?`<div style="width:${c.b30/c.total*100}%;background:#FF9800" title="30j: €${c.b30}"></div>`:''}
+            ${c.b60>0?`<div style="width:${c.b60/c.total*100}%;background:#E65100" title="60j: €${c.b60}"></div>`:''}
+            ${c.b90>0?`<div style="width:${c.b90/c.total*100}%;background:#C62828" title="90j: €${c.b90}"></div>`:''}
+            ${c.b90p>0?`<div style="width:${c.b90p/c.total*100}%;background:#880E4F" title=">90j: €${c.b90p}"></div>`:''}
+          </div>
+          ${c.overdue>0?`<div style="font-size:10px;color:#C62828;margin-top:2px;font-weight:600">⚠ Impayé: €${c.overdue}</div>`:'<div style="font-size:10px;color:#2E7D32;margin-top:2px">✓ À jour</div>'}
+        </div>`;
+      }).join('')}
+      <div style="display:flex;gap:10px;justify-content:center;margin-top:8px;font-size:9px;color:#888">
+        <span><span style="display:inline-block;width:8px;height:8px;background:#2E7D32;border-radius:1px;vertical-align:middle;margin-right:2px"></span>Courant</span>
+        <span><span style="display:inline-block;width:8px;height:8px;background:#FF9800;border-radius:1px;vertical-align:middle;margin-right:2px"></span>30j</span>
+        <span><span style="display:inline-block;width:8px;height:8px;background:#E65100;border-radius:1px;vertical-align:middle;margin-right:2px"></span>60j</span>
+        <span><span style="display:inline-block;width:8px;height:8px;background:#C62828;border-radius:1px;vertical-align:middle;margin-right:2px"></span>90j</span>
+        <span><span style="display:inline-block;width:8px;height:8px;background:#880E4F;border-radius:1px;vertical-align:middle;margin-right:2px"></span>>90j</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="g2">
+    <!-- ═══ NOTIFICATIONS RÉCENTES ═══ -->
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+        <div class="muted f11 f7">🔔 NOTIFICATIONS RÉCENTES</div>
+        <button class="btn bg bsm" onclick="navigate('/notifications')">Tout (${NOTIFICATIONS.length}) →</button>
+      </div>
+      ${NOTIFICATIONS.slice(0,5).map(n=>{
+        const icons={DISCOUNT:'%',STOCK:'📦',ORDER:'🛒',DELIVERY:'🚚',INVOICE:'🧾',SYSTEM:'⚙️'};
+        const priCol={CRITICAL:'#C62828',HIGH:'#E65100',MEDIUM:'#FF9800',INFO:'#888'};
+        return `<div onclick="navigate('${n.link}')" style="padding:7px 8px;border-radius:6px;cursor:pointer;display:flex;align-items:start;gap:8px;margin-bottom:4px;background:${n.read?'transparent':'#FFF8E1'}" onmouseover="this.style.background='#F5F5FA'" onmouseout="this.style.background='${n.read?'transparent':'#FFF8E1'}'">
+          <span style="font-size:14px">${icons[n.type]||'📌'}</span>
+          <div style="flex:1;min-width:0">
+            <div style="font-size:12px;${n.read?'color:#888':'font-weight:600;color:#1A1A2E'}">${ell(n.msg,50)}</div>
+            <div style="font-size:10px;color:#bbb;margin-top:1px">${n.date} · <span style="color:${priCol[n.pri]}">${n.pri}</span></div>
+          </div>
+          ${!n.read?'<span style="width:7px;height:7px;border-radius:50%;background:#1565C0;flex-shrink:0;margin-top:5px"></span>':''}
+        </div>`;
+      }).join('')}
+    </div>
+
+    <!-- ═══ ACTIVITÉ POS / CAISSE ═══ -->
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+        <div class="muted f11 f7">💰 CAISSE — DERNIÈRES SESSIONS</div>
+        <button class="btn bg bsm" onclick="navigate('/pos/active')">Caisse active →</button>
+      </div>
+      ${POS_SESSIONS.slice(0,3).map(s=>{
+        const diff=s.actual-s.expected;
+        const diffCol=Math.abs(diff)<1?'#2E7D32':diff>0?'#1565C0':'#C62828';
+        return `<div style="padding:8px 0;border-bottom:1px solid #F5F5FA">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div>
+              <span class="f7 f12">${s.date}</span> <span class="muted f11">${s.cashier}</span>
+            </div>
+            <span class="bdg" style="background:${s.status==='VALIDATED'?'#E8F5E9':'#FFF3E0'};color:${s.status==='VALIDATED'?'#2E7D32':'#E65100'}">${s.status}</span>
+          </div>
+          <div style="display:flex;gap:10px;font-size:11px;color:#888;margin-top:4px">
+            <span>Attendu: <b>€${s.expected.toFixed(2)}</b></span>
+            <span>Réel: <b>€${s.actual.toFixed(2)}</b></span>
+            <span>Écart: <b style="color:${diffCol}">${diff>=0?'+':''}€${diff.toFixed(2)}</b></span>
+          </div>
+          <div style="display:flex;gap:8px;font-size:10px;color:#aaa;margin-top:3px">
+            <span>💵 €${s.cash}</span>
+            <span>💳 €${s.card}</span>
+            ${s.check>0?`<span>📝 €${s.check}</span>`:''}
+          </div>
         </div>`;
       }).join('')}
     </div>
   </div>
 
-  <!-- ROW 4: Alertes stock + Balance âgée + Caisse -->
-  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px">
-
-    <!-- Alertes stock actives -->
-    <div class="card">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
-        <div class="muted f11 f7">ALERTES STOCK ACTIVES</div>
-        <button class="btn bg bsm" onclick="navigate('/inventory/alerts')">Tout voir</button>
-      </div>
-      ${ALERTS.filter(a=>a.status==='ACTIVE').slice(0,5).map(a=>{
-        const lc=a.level==='CRITIQUE'?'#C62828':a.level==='WARNING'?'#E65100':'#1565C0';
-        return `<div style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid #F5F5FA">
-          <span style="background:${lc}18;color:${lc};padding:1px 7px;border-radius:8px;font-size:9px;font-weight:800;border:1px solid ${lc}30;flex-shrink:0">${a.level}</span>
-          <div style="flex:1;min-width:0">
-            <div style="font-size:11px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${a.sku}</div>
-            <div style="font-size:10px;color:#888">${a.stk}u · seuil ${a.min}u</div>
-          </div>
-        </div>`;
-      }).join('')||'<div class="muted f12 mt2">Aucune alerte active ✅</div>'}
+  <!-- ═══ RACCOURCIS RAPIDES ═══ -->
+  <div class="card">
+    <div class="muted f11 f7 mb2">⚡ ACCÈS RAPIDE</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:6px">
+      ${[
+        ['/pos/sale','⚡','Nouvelle Vente','POS comptoir'],
+        ['/orders','🛒','Commandes','En cours & historique'],
+        ['/quotes','📄','Devis','Créer / gérer'],
+        ['/customers','👥','Clients','CRM & comptes'],
+        ['/inventory','📊','Stocks','Mouvements & zones'],
+        ['/purchasing/alerts','⚡','Achats','Réapprovisionnement'],
+        ['/invoices','🧾','Factures','Émission & suivi'],
+        ['/suppliers','🚚','Fournisseurs','API & manuels'],
+        ['/pricing-grids','💰','Tarification','Grilles par groupe'],
+        ['/reports/dashboard','📈','Reporting','CA, marges, KPIs'],
+        ['/imports/products','📥','Imports CSV','Produits & catalogues'],
+        ['/admin/settings','⚙️','Paramètres','Config. système'],
+      ].map(([p,e,l,d])=>`<div onclick="navigate('${p}')" style="padding:10px;background:#F5F5FA;border-radius:8px;cursor:pointer;text-align:center;transition:all .15s" onmouseover="this.style.background='#E3F2FD';this.style.transform='translateY(-1px)'" onmouseout="this.style.background='#F5F5FA';this.style.transform=''">
+        <div style="font-size:20px;margin-bottom:4px">${e}</div>
+        <div class="f7 f12">${l}</div>
+        <div class="muted f11">${d}</div>
+      </div>`).join('')}
     </div>
-
-    <!-- Balance âgée résumé -->
-    <div class="card">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
-        <div class="muted f11 f7">BALANCE ÂGÉE — IMPAYÉS</div>
-        <button class="btn bg bsm" onclick="navigate('/reports/aging')">Voir →</button>
-      </div>
-      ${AGING_BUCKETS.filter(b=>b.overdue>0).map(b=>{
-        const ratio=b.overdue/b.total;
-        return `<div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid #F5F5FA">
-          <div>
-            <div style="font-size:11px;font-weight:600">${ell(b.cust,16)}</div>
-            <div style="font-size:10px;color:#888">${b.grp}</div>
-          </div>
-          <div style="text-align:right">
-            <div style="font-size:12px;font-weight:800;color:#C62828">${fmt(b.overdue)}</div>
-            <div style="font-size:10px;color:#888">${(ratio*100).toFixed(0)}% du total</div>
-          </div>
-        </div>`;
-      }).join('')||'<div class="muted f12 mt2">Aucun impayé ✅</div>'}
-      <div style="display:flex;justify-content:space-between;padding:8px 0;margin-top:4px;border-top:2px solid #F0F0F4">
-        <span style="font-size:11px;font-weight:700">TOTAL IMPAYÉS</span>
-        <span style="font-size:14px;font-weight:900;color:#C62828">${fmt(totalOverdue)}</span>
-      </div>
-    </div>
-
-    <!-- Caisse active -->
-    <div class="card">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
-        <div class="muted f11 f7">CAISSE ACTIVE</div>
-        <button class="btn bg bsm" onclick="navigate('/pos/active')">Détail →</button>
-      </div>
-      ${posOpen?`
-        <div style="background:#E8F5E9;border-radius:10px;padding:12px;margin-bottom:10px;text-align:center">
-          <div style="font-size:10px;color:#2E7D32;font-weight:700;margin-bottom:4px">OUVERTE DEPUIS</div>
-          <div style="font-size:16px;font-weight:900;color:#2E7D32">${POS_SESSION.openTime||'08:30'}</div>
-          <div style="font-size:10px;color:#888;margin-top:2px">Fond de caisse: ${fmt(POS_SESSION.openFloat)}</div>
-        </div>
-        <div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid #F5F5FA">
-          <span class="muted f11">Tickets du jour</span>
-          <span class="f7 f12">${ORDERS.filter(o=>o.src==='COUNTER').length}</span>
-        </div>
-        <div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid #F5F5FA">
-          <span class="muted f11">CA encaissé</span>
-          <span class="f7 f12" style="color:#1565C0">${fmt(ORDERS.filter(o=>o.src==='COUNTER').reduce((s,o)=>s+o.ttc,0))}</span>
-        </div>
-        <div style="display:flex;justify-content:space-between;padding:5px 0">
-          <span class="muted f11">Fond estimé</span>
-          <span class="f7 f12" style="color:#2E7D32">${fmt((POS_SESSION.openFloat||150)+ORDERS.filter(o=>o.src==='COUNTER'&&o.pay==='PAID').reduce((s,o)=>s+o.ttc,0))}</span>
-        </div>
-        <button class="btn bd bsm mt2" style="width:100%" onclick="navigate('/pos/close')">🔒 Clôturer la caisse</button>
-      `:`
-        <div style="text-align:center;padding:20px 0">
-          <div style="font-size:36px;margin-bottom:8px">🔒</div>
-          <div class="muted f12">Caisse non ouverte</div>
-          <button class="btn bp bsm mt2" onclick="navigate('/pos/open')">🔓 Ouvrir la caisse</button>
-        </div>
-      `}
-    </div>
-  </div>`);
+  </div>
+  `);
 }
 function approveDisc(id){
   const d=DISCOUNTS.find(x=>x.id===id);if(!d)return;
@@ -908,80 +934,40 @@ function rejectDisc(id){DISCOUNTS=DISCOUNTS.map(d=>d.id===id?{...d,status:'REJEC
 function screenCatalog(){
   const isB2B=ROLE&&ROLE.startsWith('B2B');
   setContent(`
-  <!-- Header -->
-  <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap">
-    <div style="flex:1">
-      <div class="ptit">Catalogue</div>
-      <div class="psub">${PRODS.filter(p=>p.active).length} références · 5 modes de recherche</div>
-    </div>
-    ${!isB2B?`<button class="btn bp" onclick="navigate('/pos/sale')">⚡ Nouvelle Vente</button>`:''}
+  <div class="ph"><div><div class="ptit">Catalogue</div><div class="psub">${PRODS.filter(p=>p.active).length} références actives · 5 modes de recherche</div></div>
+  ${!isB2B?`<button class="btn bp" onclick="navigate('/pos/sale')">⚡ Nouvelle Vente</button>`:''}
   </div>
-
-  <!-- Barre de recherche PartsTech-style -->
-  <div style="display:flex;gap:8px;margin-bottom:12px;align-items:stretch">
-    <div style="display:flex;border:2px solid #1565C0;border-radius:10px;overflow:hidden;flex:1;max-width:600px;background:#fff">
-      <select id="cat-mode-sel" onchange="setCatModeFromSel(this.value)" style="border:none;outline:none;padding:0 12px;font-size:12px;font-weight:700;color:#1565C0;background:#EFF6FF;border-right:2px solid #1565C0;cursor:pointer;min-width:130px">
-        <option value="text">🔤 Texte libre</option>
-        <option value="oem">🔩 Réf OEM</option>
-        <option value="ean">📊 EAN/Code-barre</option>
-        <option value="sku">🏷 SKU interne</option>
-        <option value="xref">🔀 Cross-référence</option>
-      </select>
-      <input id="csrch" placeholder="Rechercher par nom, référence, marque..." oninput="catFilter()"
-        style="flex:1;border:none;outline:none;padding:10px 14px;font-size:13px" autofocus>
-      <button onclick="Q('csrch').value='';catFilter()" style="border:none;background:transparent;padding:0 12px;color:#aaa;cursor:pointer;font-size:16px">✕</button>
-    </div>
-    <!-- Filtres rapides -->
-    <select class="fi" id="c-cat-filter" onchange="catFilter()" style="width:150px">
-      <option value="">Toutes catégories</option>
-      ${[...new Set(PRODS.map(p=>p.cat))].sort().map(c=>`<option>${c}</option>`).join('')}
-    </select>
-    <select class="fi" id="c-br-filter" onchange="catFilter()" style="width:130px">
-      <option value="">Toutes marques</option>
-      ${[...new Set(PRODS.map(p=>p.br))].sort().map(b=>`<option>${b}</option>`).join('')}
-    </select>
-    <select class="fi" id="c-stk-filter" onchange="catFilter()" style="width:120px">
-      <option value="">Tout le stock</option>
-      <option value="ok">✅ En stock</option>
-      <option value="ext">📦 Fournisseur</option>
-    </select>
+  <div class="tabs mb2" id="search-mode-tabs">
+    <button class="tab on" onclick="setCatMode('text',this)">🔤 Texte libre</button>
+    <button class="tab" onclick="setCatMode('oem',this)">🔩 Réf OEM</button>
+    <button class="tab" onclick="setCatMode('ean',this)">📊 EAN/Barcode</button>
+    <button class="tab" onclick="setCatMode('sku',this)">🏷 SKU interne</button>
+    <button class="tab" onclick="setCatMode('xref',this)">🔀 Cross-ref</button>
   </div>
-
-  <!-- Résultats -->
-  <div id="cat-stats" style="font-size:11px;color:#888;margin-bottom:8px"></div>
-  <div id="ctbody"></div>`);
+  <div class="mb2"><input class="fi" id="csrch" placeholder="🔍  Rechercher..." oninput="catFilter()" style="font-size:13px;padding:10px 14px" autofocus></div>
+  <div class="tw"><table>
+    <thead><tr><th>Produit</th><th>Réf OEM / EAN</th><th>Emplacement</th>${isB2B?'<th>Votre prix TTC</th>':'<th>HT</th><th>TTC</th><th>Stock</th>'}${!isB2B?'<th>Fourn.</th>':''}<th></th></tr></thead>
+    <tbody id="ctbody"></tbody>
+  </table></div>`);
   window._catMode='text';
-  catFilter();
-}
-function setCatModeFromSel(m){
-  window._catMode=m;
-  const ph={text:'Rechercher par nom, référence, marque...',oem:'Référence OEM ex: 0986494524',ean:'Code EAN / scanner barcode',sku:'SKU interne ex: BRK-BOS-001',xref:'Référence croisée concurrent'};
-  const el=Q('csrch');if(el){el.placeholder=ph[m]||'';el.value='';el.focus();}
   catFilter();
 }
 function setCatMode(m,el){
   window._catMode=m;
   document.querySelectorAll('#search-mode-tabs .tab').forEach(t=>t.classList.remove('on'));
-  if(el)el.classList.add('on');
-  const sel=Q('cat-mode-sel');if(sel)sel.value=m;
+  el.classList.add('on');
+  const ph={text:'🔍 Nom, marque, description...',oem:'🔍 Référence OEM ex: 0986494524',ean:'🔍 Code EAN / scanner barcode',sku:'🔍 SKU interne ex: BRK-BOS-001',xref:'🔍 Référence croisée concurrent'};
+  const el2=Q('csrch');if(el2){el2.placeholder=ph[m]||'';el2.value='';el2.focus();}
   catFilter();
 }
 function catFilter(){
   const q=(Q('csrch')||{value:''}).value.toLowerCase().trim();
   const mode=window._catMode||'text';
-  const catF=(Q('c-cat-filter')||{value:''}).value;
-  const brF=(Q('c-br-filter')||{value:''}).value;
-  const stkF=(Q('c-stk-filter')||{value:''}).value;
   const el=Q('ctbody');if(!el)return;
   const isB2B=ROLE&&ROLE.startsWith('B2B');
   const showCost=(ROLE==='OWNER'||ROLE==='MANAGER'||ROLE==='PURCHASER');
-
   const rows=PRODS.filter(p=>{
     if(!p.active)return false;
-    if(catF&&p.cat!==catF)return false;
-    if(brF&&p.br!==brF)return false;
-    if(stkF==='ok'&&p.stk<=0)return false;
-    if(stkF==='ext'&&p.stk>0)return false;
     if(!q)return true;
     if(mode==='ean')return p.ean.includes(q);
     if(mode==='sku')return p.sku.toLowerCase().includes(q);
@@ -989,129 +975,41 @@ function catFilter(){
     if(mode==='xref')return(p.ref||'').toLowerCase().includes(q)||p.sku.toLowerCase().includes(q);
     return p.n.toLowerCase().includes(q)||p.sku.toLowerCase().includes(q)||p.ean.includes(q)||(p.ref||'').toLowerCase().includes(q)||p.br.toLowerCase().includes(q)||p.cat.toLowerCase().includes(q);
   });
-
-  const stats=Q('cat-stats');
-  if(stats)stats.innerHTML=`<b>${rows.length}</b> résultat${rows.length>1?'s':''}${rows.length<PRODS.filter(p=>p.active).length?' sur '+PRODS.filter(p=>p.active).length+' références':''}`;
-
-  if(!rows.length){
-    el.innerHTML=`<div style="text-align:center;padding:60px 20px;color:#aaa">
-      <div style="font-size:48px;margin-bottom:12px">🔍</div>
-      <div style="font-size:16px;font-weight:600;margin-bottom:8px">Aucun résultat</div>
-      <div style="font-size:13px">Essayez un autre terme ou changez de mode de recherche</div>
-    </div>`;
-    return;
-  }
-
   el.innerHTML=rows.map(p=>{
-    // Pricing
-    const _custGrp=(()=>{
-      if(ROLE&&ROLE.startsWith('B2B')){const cu=CUSTOMERS.find(c=>c.n===ROLES[ROLE]?.n);return cu?cu.grp:'Standard';}
-      return POS_CUST?(CUSTOMERS.find(c=>c.n===POS_CUST)||{grp:'Standard'}).grp:'Standard';
-    })();
+    // Apply effectivePrice based on connected customer group
+    const _custGrp=(()=>{if(ROLE&&ROLE.startsWith('B2B')){const cu=CUSTOMERS.find(c=>c.n===ROLES[ROLE]?.n);return cu?cu.grp:'Standard';}return POS_CUST?(CUSTOMERS.find(c=>c.n===POS_CUST)||{grp:'Standard'}).grp:'Standard';})();
     const _ep=effectivePrice(p,_custGrp);
-    const priceHT=_ep.price, priceTTC=priceHT*1.2;
-    const listHT=p.buy*p.cof, listTTC=listHT*1.2;  // prix catalogue standard
-
-    // Stock & supplier
-    const isExt=p.stk<=0;
+    const ht_=_ep.price,ttc=ht_*1.2;
+    const _discBadge=_ep.disc>0?`<span style="background:#E8F5E9;color:#2E7D32;padding:1px 6px;border-radius:10px;font-size:9px;font-weight:700;margin-left:4px">-${_ep.disc}%</span>`:'';
+    const isExt=p.stk===0;
     const best=getBestSup(p.id);
     const dd=isExt&&best?getDeliveryDate(best.lead,best.cut):null;
     const ct=best?getCutoffCountdown(best.cut):null;
     const dCol=dd?({1:'#2E7D32',2:'#E65100',3:'#7B1FA2'}[dd.days]||'#555'):'#C62828';
-    const stkCol=p.stk===0?'#C62828':p.stk<=p.mn?'#E65100':'#2E7D32';
-    const stkLabel=p.stk===0?'RUPTURE':p.stk<=p.mn?`FAIBLE (${p.stk})`:`EN STOCK ${p.stk}`;
-    const stkBg=p.stk===0?'#FFEBEE':p.stk<=p.mn?'#FFF3E0':'#E8F5E9';
-
-    // Image
-    const img=(PRODUCT_IMAGES[p.id]||[])[0]||null;
-
-    // Specs pills
-    const specPills=[];
-    if(p.pos)specPills.push({l:'Position',v:p.pos});
-    specPills.push({l:'Qté/véhicule',v:p.qty_per_veh||1});
-    if(p.ref)specPills.push({l:'Réf OEM',v:p.ref});
-    if(p.specs)specPills.push({l:'Specs',v:p.specs});
-    specPills.push({l:'Catégorie',v:p.cat});
-    if(p.dep>0)specPills.push({l:'Consigne',v:fmt(p.dep)});
-
-    // Discount info
-    const hasDisc=_ep.disc>0;
-
-    return `<div style="border:1.5px solid #E8E8EC;border-radius:12px;padding:0;margin-bottom:10px;background:#fff;overflow:hidden;transition:box-shadow .15s" onmouseover="this.style.boxShadow='0 4px 16px rgba(21,101,192,.12)';this.style.borderColor='#90CAF9'" onmouseout="this.style.boxShadow='';this.style.borderColor='#E8E8EC'">
-      <div style="display:flex;gap:0;align-items:stretch;min-height:110px">
-
-        <!-- IMAGE / LOGO BRAND -->
-        <div style="width:120px;flex-shrink:0;border-right:1.5px solid #F0F0F4;background:#FAFAFA;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:12px;gap:6px">
-          <div style="width:80px;height:70px;display:flex;align-items:center;justify-content:center;border-radius:8px;overflow:hidden;background:#fff;border:1px solid #F0F0F4">
-            ${img?`<img src="${img}" style="width:80px;height:70px;object-fit:contain" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div style="display:none;align-items:center;justify-content:center;font-size:34px;width:80px;height:70px">${p.em}</div>`:
-            `<div style="font-size:34px;width:80px;height:70px;display:flex;align-items:center;justify-content:center">${p.em}</div>`}
-          </div>
-          <div style="font-size:10px;font-weight:800;color:#555;text-align:center;line-height:1.2">${p.br}</div>
-          <div style="background:${stkBg};color:${stkCol};padding:2px 6px;border-radius:8px;font-size:9px;font-weight:800;text-align:center;white-space:nowrap">${stkLabel}</div>
-        </div>
-
-        <!-- CENTRE: NOM + SKU + SPECS -->
-        <div style="flex:1;padding:12px 16px;min-width:0;display:flex;flex-direction:column;justify-content:space-between">
-          <div>
-            <!-- Nom + badges -->
-            <div style="display:flex;align-items:start;gap:8px;margin-bottom:5px;flex-wrap:wrap">
-              <span style="font-size:15px;font-weight:800;color:#1A1A2E;cursor:pointer;line-height:1.2" onclick="showProdDetail('${p.id}')">${p.n}</span>
-              ${hasDisc?`<span style="background:#E8F5E9;color:#2E7D32;padding:2px 8px;border-radius:20px;font-size:10px;font-weight:800;flex-shrink:0">-${_ep.disc}% ${_custGrp}</span>`:''}
-              ${isExt&&dd?`<span style="background:${dCol}15;border:1px solid ${dCol}50;border-radius:8px;padding:2px 8px;font-size:10px;font-weight:800;color:${dCol};flex-shrink:0">${dd.tag} — ${dd.label}</span>`:''}
-              ${isExt&&!best?`<span style="background:#FFEBEE;color:#C62828;padding:2px 8px;border-radius:8px;font-size:10px;font-weight:700">⛔ Indisponible fourn.</span>`:''}
-            </div>
-            <!-- SKU + ref -->
-            <div style="font-size:11px;font-family:monospace;color:#888;margin-bottom:8px">
-              ${p.sku}${p.ref?` · OEM: <b style="color:#555">${p.ref}</b>`:''}${best?` · ${best.sup}`:''}
-            </div>
-            <!-- Specs pills PartsTech-style -->
-            <div style="display:flex;flex-wrap:wrap;gap:5px">
-              ${specPills.map(s=>`<span style="border:1px solid #E0E0E6;border-radius:6px;padding:3px 8px;font-size:11px;white-space:nowrap"><span style="color:#888">${s.l}:</span> <b style="color:#333">${s.v}</b></span>`).join('')}
-            </div>
-          </div>
-          <!-- Emplacement entrepôt -->
-          ${!isExt?`<div style="margin-top:8px;font-size:10px;color:#aaa">📍 Zone ${p.z} · Allée ${p.al}-${p.sh}</div>`:''}
-          <!-- Supplier info si EXT -->
-          ${isExt&&best?`<div style="margin-top:8px;font-size:11px;color:#555">
-            📦 <b>${best.sup}</b> · ${best.qty} unité(s) disponible(s)
-            ${ct&&!ct.passed?`· <span style="color:${ct.urgent?'#C62828':'#888'}">⏱ cut-off ${best.cut} (${ct.label})</span>`:ct&&ct.passed?'· <span style="color:#C62828;font-weight:700">⚠️ Cut-off dépassé</span>':''}
-          </div>`:''}
-          ${p.sup_ref?`<div style="font-size:10px;color:#aaa;margin-top:4px">↪ Remplace: <span style="font-family:monospace;color:#888">${p.sup_ref}</span></div>`:''}
-        </div>
-
-        <!-- DROITE: PRIX -->
-        <div style="width:160px;flex-shrink:0;border-left:1.5px solid #F0F0F4;padding:12px 14px;display:flex;flex-direction:column;justify-content:center;text-align:right">
-          <!-- Prix principal -->
-          <div style="font-size:24px;font-weight:900;color:#1A1A2E;margin-bottom:2px">${fmt(priceHT)}</div>
-          <div style="font-size:10px;color:#888;margin-bottom:8px">HT · ${fmt(priceTTC)} TTC</div>
-          <!-- Cascade prix style Ford/PartsTech -->
-          <div style="font-size:10px;color:#888;line-height:2;border-top:1px solid #F0F0F4;padding-top:6px">
-            ${showCost?`<div>Achat: <span style="font-family:monospace;color:#555">${fmt(p.buy)}</span></div>`:''}
-            ${hasDisc?`<div>Catalogue: <span style="text-decoration:line-through;color:#bbb">${fmt(listHT)}</span></div>`:''}
-            <div>Prix liste: <span style="font-family:monospace;color:#555">${fmt(listTTC)}</span> TTC</div>
-            ${p.dep>0?`<div style="color:#7B1FA2">Consigne: +${fmt(p.dep)}</div>`:''}
-          </div>
-        </div>
-
-        <!-- FAR RIGHT: QTÉ + PANIER -->
-        <div style="width:100px;flex-shrink:0;border-left:1.5px solid #F0F0F4;padding:12px 10px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;background:#FAFAFA">
-          <input type="number" value="1" min="1" id="qty-${p.id}"
-            style="width:54px;text-align:center;padding:6px 4px;border:1.5px solid #E0E0E6;border-radius:8px;font-size:14px;font-weight:700;color:#1A1A2E">
-          <button onclick="addToCartQty('${p.id}',parseInt(document.getElementById('qty-${p.id}').value)||1)"
-            style="width:100%;padding:9px 0;background:#E65100;border:none;border-radius:8px;color:#fff;font-size:12px;font-weight:800;cursor:pointer;transition:background .15s"
-            onmouseover="this.style.background='#BF360C'" onmouseout="this.style.background='#E65100'">
-            + Panier
-          </button>
-          <button onclick="showProdDetail('${p.id}')"
-            style="width:100%;padding:5px 0;background:transparent;border:1px solid #E0E0E6;border-radius:8px;color:#888;font-size:10px;cursor:pointer"
-            onmouseover="this.style.borderColor='#1565C0';this.style.color='#1565C0'" onmouseout="this.style.borderColor='#E0E0E6';this.style.color='#888'">
-            🔍 Détail
-          </button>
-        </div>
-      </div>
-    </div>`;
-  }).join('');
+    const sc=p.stk===0?'#C62828':p.stk<=p.mn?'#E65100':'#2E7D32';
+    return `<tr>
+      <td>
+        <span class="f7" style="cursor:pointer;color:#1565C0" onclick="showProdDetail('${p.id}')">${p.em} ${p.n}</span>${_discBadge}
+        <br><span class="muted f11 mono">${p.sku} · ${p.br} · ${p.cat}</span>
+        ${p.dep>0?`<span class="bdg" style="background:#F3E5F5;color:#7B1FA2;font-size:10px;margin-left:4px">+consigne ${fmt(p.dep)}</span>`:''}
+      </td>
+      <td class="mono f11">${p.ref||'—'}<br><span class="muted">${p.ean}</span></td>
+      <td>${isExt?'<span class="muted f11">—</span>':`<span style="background:#F5F5FA;padding:2px 7px;border-radius:5px;font-size:11px">Z${p.z}·${p.al}-${p.sh}</span>`}</td>
+      ${isB2B?`<td class="f7">${fmt(ttc)}</td>`:`<td>${showCost?fmt(p.buy)+' <span class="muted f11">(achat)</span>':fmt(ht_)}</td><td class="f7">${fmt(ttc)}</td>
+      <td class="f8">${isExt?`<span style="color:${dCol};font-weight:700">${dd?dd.tag:'EXT'}</span>`:`<span style="color:${sc}">${p.stk}</span>`}</td>`}
+      <td class="f11">
+        ${isExt&&dd?`<span style="color:${dCol};font-weight:700">${dd.tag} ${dd.label}</span><br><span style="font-size:10px;color:#888">${best.sup} · ${best.qty}u${ct&&!ct.passed?' · ⏱ '+ct.label:ct&&ct.passed?' · ⚠️ cut-off':''}</span>`
+        :isExt?'<span class="danger f11">⛔ Indispo fourn.</span>'
+        :'<span style="color:#2E7D32;font-size:11px">✅ Stock dispo</span>'}
+      </td>
+      <td style="white-space:nowrap">
+        <button class="btn bg bsm" onclick="showProdDetail('${p.id}')">🔍</button>
+        <button class="btn bp bsm" onclick="addToCart('${p.id}')">+ Panier</button>
+      </td>
+    </tr>`;
+  }).join('')||`<tr><td colspan="8" class="es">Aucun résultat</td></tr>`;
 }
+
 // ═══ PRODUCTS CRUD ══════════════════════════════════════════
 function screenProducts(){
   setContent(`
@@ -1312,30 +1210,12 @@ function delivBadge(s){
 }
 
 function posCanSell(){
-  if(ROLE==='COUNTER'||ROLE==='MANAGER'){
+  if(ROLE==='COUNTER'){
     if(!POS_SESSION||POS_SESSION.status!=='OPEN'){return false;}
   }
   return true;
 }
 
-function addToCartQty(pid, qty){
-  if(!posCanSell()&&(PAGE==='/pos/sale'||PAGE==='/orders/new')){
-    toast('Ouvrez la caisse avant de vendre','error');
-    navigate('/pos/open');return;
-  }
-  const p=PRODS.find(x=>x.id===pid);if(!p)return;
-  const ex=CART.find(c=>c.id===pid);
-  const custObj=POS_CUST?CUSTOMERS.find(c=>c.n===POS_CUST):null;
-  const grp=custObj?custObj.grp:'Standard';
-  const ep=effectivePrice(p,grp);
-  if(ex){CART=CART.map(c=>c.id===pid?{...c,qty:c.qty+qty}:c);}
-  else{
-    const supAvail=SUP_AVAIL[pid]||[];
-    CART=[...CART,{...p,qty,uht:ep.price,disc:ep.disc,src:p.stk>0?'INT':'EXT',supAvail,_grp:grp}];
-  }
-  if(PAGE==='/pos/sale'||PAGE==='/b2b/cart'||PAGE==='/orders/new')refreshPOS();
-  else toast(`${qty}× ${p.n} ajouté au panier ✓`,'success');
-}
 function addToCart(pid){
   if(!posCanSell()&&(PAGE==='/pos/sale'||PAGE==='/orders/new')){
     toast('Ouvrez la caisse avant de vendre','error');
@@ -1416,7 +1296,7 @@ function openCaisse(){
 
 // ─── Écran POS Principal ─────────────────────────────────────────
 function screenPOS(){
-  if((ROLE==='COUNTER'||ROLE==='MANAGER')&&(!POS_SESSION||POS_SESSION.status!=='OPEN')){
+  if((ROLE==='COUNTER')&&(!POS_SESSION||POS_SESSION.status!=='OPEN')){
     setContent(`
     <div style="text-align:center;padding:60px 20px">
       <div style="font-size:60px;margin-bottom:16px">🔒</div>
@@ -1430,7 +1310,7 @@ function screenPOS(){
   setContent(`
   <div style="display:flex;height:calc(100vh - 96px);gap:12px;overflow:hidden">
     <!-- GAUCHE: recherche + catalogue -->
-    <div style="width:460px;flex-shrink:0;display:flex;flex-direction:column;gap:10px;overflow:hidden">
+    <div style="width:360px;flex-shrink:0;display:flex;flex-direction:column;gap:10px;overflow:hidden">
       ${!isB2B?`<div class="card" style="padding:10px;flex-shrink:0">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
           <span class="muted f11 f7">CLIENT</span>
@@ -1454,7 +1334,7 @@ function screenPOS(){
           <button class="tab" id="smode-xref" onclick="setSmode('xref',this)">Cross-ref</button>
         </div>
         <input class="fi" id="posq" placeholder="${posPlaceholder('text')}" oninput="posFilter()" style="font-size:13px;padding:9px 12px" autofocus>
-        <div id="posres" style="margin-top:6px;max-height:380px;overflow-y:auto"></div>
+        <div id="posres" style="margin-top:6px;max-height:200px;overflow-y:auto"></div>
       </div>
       <!-- Catalogue rapide -->
       <div class="card" style="flex:1;overflow-y:auto;padding:10px">
@@ -1476,43 +1356,8 @@ function screenPOS(){
           </div>
         </div>
         <div style="flex:1;overflow-y:auto;margin-bottom:8px" id="cart-lines">${renderCartLines()}</div>
-        <!-- Mode de livraison -->
-        ${CART.length?`<div style="background:#F0F7FF;border-radius:8px;padding:10px;flex-shrink:0;margin-bottom:8px">
-          <div class="muted f11 f7 mb1">MODE DE LIVRAISON${POS_CUST?(()=>{const cg=(CUSTOMERS.find(c=>c.n===POS_CUST)||{grp:'Standard'}).grp;return` · <span style="color:#2E7D32;font-size:10px">${cg}</span>`;})():''}</div>
-          <div style="display:flex;gap:8px;margin-bottom:8px">
-            <button class="btn ${POS_DELIVERY==='COMPLETE'?'bp':'bs'}" style="flex:1;padding:9px;font-size:12px" onclick="POS_DELIVERY='COMPLETE';refreshPOS()">
-              ✓ Complet
-            </button>
-            <button class="btn ${POS_DELIVERY==='PARTIAL'?'bp':'bs'}" style="flex:1;padding:9px;font-size:12px" onclick="POS_DELIVERY='PARTIAL';refreshPOS()">
-              ⚡ Partiel
-            </button>
-          </div>
-          ${(()=>{
-            const intLines=CART.filter(c=>c.stk>0);
-            const extLines=CART.filter(c=>c.stk===0);
-            const extBySup={};
-            extLines.forEach(c=>{
-              const best=getBestSup(c.id);
-              if(best){const k=best.lead;if(!extBySup[k])extBySup[k]=[];extBySup[k].push({name:c.n,best});}
-            });
-            const supGroups=Object.entries(extBySup).sort(([a],[b])=>a-b);
-            if(extLines.length===0)return`<div style="font-size:11px;color:#2E7D32">✅ Tout en stock — livraison aujourd'hui</div>`;
-            if(POS_DELIVERY==='PARTIAL'){
-              return`<div style="font-size:11px">
-                ${intLines.length?`<div style="color:#2E7D32">✅ ${intLines.length} article(s) INT — aujourd'hui</div>`:''}
-                ${supGroups.map(([lead,items])=>{
-                  const dd=getDeliveryDate(parseInt(lead),items[0].best.cut);
-                  const col={1:'#2E7D32',2:'#E65100',3:'#7B1FA2'}[lead]||'#555';
-                  return `<div style="color:${col}">📦 D+${lead} ${dd?'— '+dd.label:''}: ${items.map(i=>ell(i.name,18)).join(', ')}</div>`;
-                }).join('')}
-              </div>`;
-            } else {
-              const maxLead=Math.max(...extLines.map(c=>{const b=getBestSup(c.id);return b?b.lead:0;}));
-              const lastDd=maxLead>0?getDeliveryDate(maxLead,'16:00'):null;
-              return`<div style="font-size:11px;color:#7B1FA2">⏳ Livraison complète: D+${maxLead}${lastDd?' — '+lastDd.label:''}</div>`;
-            }
-          })()}
-        </div>`:''}
+        <!-- Mode de livraison (dynamic) -->
+        <div id="delivery-block">${renderDeliveryBlock()}</div>
         <div style="flex-shrink:0;border-top:2px solid #E8E8EC;padding-top:8px" id="cart-totals">${renderCartTotals()}</div>
       </div>
     </div>
@@ -1555,206 +1400,158 @@ function posFilter(){
     const dd=isExt&&bestSup?getDeliveryDate(bestSup.lead,bestSup.cut):null;
     const ct=bestSup?getCutoffCountdown(bestSup.cut):null;
     const dCol=dd?({1:'#2E7D32',2:'#E65100',3:'#7B1FA2'}[dd.days]||'#555'):'#C62828';
-    const stockCol=isExt?(dd?dCol:'#C62828'):'#2E7D32';
-    const stockBg=isExt?(dd?dCol+'18':'#C6282818'):'#E8F5E9';
-    const stockLabel=isExt?(dd?dd.tag:'⛔ Hors stock'):'EN STOCK '+p.stk+'u';
-    const img=(PRODUCT_IMAGES&&PRODUCT_IMAGES[p.id]||[])[0]||null;
-    return `<div onclick="addToCart('${p.id}')" style="display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:10px;cursor:pointer;margin-bottom:5px;border:1.5px solid #E8E8EC;background:#fff" onmouseover="this.style.borderColor='#1565C0';this.style.background='#F0F7FF'" onmouseout="this.style.borderColor='#E8E8EC';this.style.background='#fff'">
-      <div style="width:42px;height:42px;flex-shrink:0;border-radius:8px;background:#F5F5FA;border:1px solid #E8E8EC;display:flex;align-items:center;justify-content:center;font-size:20px;overflow:hidden">
-        ${img?`<img src="${img}" style="width:42px;height:42px;object-fit:cover" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:20px">${p.em}</div>`:p.em}
-      </div>
-      <div style="flex:1;min-width:0">
-        <div style="font-weight:700;font-size:13px;color:#1A1A2E;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${p.n}</div>
-        <div style="font-size:10px;font-family:monospace;color:#999;margin-top:1px">${p.sku}${p.ref?' · OEM: '+p.ref:''}</div>
-        <div style="display:flex;align-items:center;gap:5px;margin-top:4px;flex-wrap:wrap">
-          <span style="background:${stockBg};color:${stockCol};padding:1px 7px;border-radius:8px;font-size:10px;font-weight:800;border:1px solid ${stockCol}30">${stockLabel}</span>
-          ${isExt&&dd&&bestSup?`<span style="font-size:10px;color:#888">${bestSup.sup}${ct&&!ct.passed?' · ⏱'+ct.label:''}</span>`:''}
-          ${p.dep>0?`<span style="font-size:10px;color:#7B1FA2">+consigne ${fmt(p.dep)}</span>`:''}
+    return `<div onclick="addToCart('${p.id}')" style="padding:8px 9px;border-radius:8px;cursor:pointer;border:1px solid transparent;margin-bottom:3px;background:#F5F5FA" onmouseover="this.style.borderColor='#1565C0';this.style.background='#EFF6FF'" onmouseout="this.style.borderColor='transparent';this.style.background='#F5F5FA'">
+      <div style="display:flex;justify-content:space-between;align-items:start;gap:8px">
+        <div style="flex:1;min-width:0">
+          <div class="f7 f13">${p.em} ${p.n}</div>
+          <div class="muted f11 mono">${p.sku}${p.ref?' · '+p.ref:''}</div>
+          ${isExt?`<div style="margin-top:3px;display:flex;align-items:center;gap:6px;flex-wrap:wrap">
+            ${dd?`<span style="font-size:11px;font-weight:800;background:${dCol}15;border:1px solid ${dCol}50;border-radius:5px;padding:1px 6px;color:${dCol}">${dd.tag} — ${dd.label}</span>`:''}
+            ${bestSup?`<span style="font-size:10px;color:#888">${bestSup.sup} · ${bestSup.qty}u · ${fmt(bestSup.price)}${ct&&!ct.passed?' · ⏱'+ct.label:ct&&ct.passed?' · ⚠️ cut-off dépassé':''}</span>`:'<span style="font-size:10px;color:#C62828">⛔ Aucun fournisseur</span>'}
+          </div>`:`<div style="font-size:11px;color:#2E7D32;margin-top:2px">🟢 Stock: ${p.stk} u en entrepôt</div>`}
+          ${p.dep>0?`<div style="font-size:10px;color:#7B1FA2;margin-top:1px">⚙️ Consigne: +${fmt(p.dep)} HT</div>`:''}
         </div>
-      </div>
-      <div style="flex-shrink:0;text-align:right">
-        <div style="font-size:15px;font-weight:900;color:#1A1A2E">${fmt(p.buy*p.cof*1.2)}</div>
-        <div style="font-size:9px;color:#888;margin-bottom:3px">TTC</div>
-        <div style="background:#1565C0;color:#fff;border-radius:6px;padding:2px 7px;font-size:10px;font-weight:700">+ Ajouter</div>
+        <div style="text-align:right;flex-shrink:0">
+          <div class="f8 f13">${fmt(p.buy*p.cof*1.2)}</div>
+          <div style="font-size:10px;font-weight:700;padding:1px 5px;border-radius:4px;margin-top:2px;background:${isExt?'#FFF3E0':'#E8F5E9'};color:${isExt?'#E65100':'#2E7D32'}">${isExt?'EXT':'INT'}</div>
+        </div>
       </div>
     </div>`;
   }).join('')||'<div class="muted f12">Aucun résultat</div>';
 }
 function quickCatalogRows(cat){
-  return PRODS.filter(p=>p.active&&(!cat||p.cat===cat)).slice(0,20).map(p=>{
+  return PRODS.filter(p=>p.active&&(!cat||p.cat===cat)).slice(0,16).map(p=>{
     const isExt=p.stk===0;
     const best=getBestSup(p.id);
     const dd=isExt&&best?getDeliveryDate(best.lead,best.cut):null;
     const dCol=dd?({1:'#2E7D32',2:'#E65100',3:'#7B1FA2'}[dd.days]||'#555'):'#C62828';
-    const stockCol=isExt?(dd?dCol:'#C62828'):'#2E7D32';
-    const stockBg=isExt?(dd?dCol+'18':'#C6282818'):'#E8F5E9';
-    const stockLabel=isExt?(dd?dd.tag:'⛔'):(p.stk+'u dispo');
-    const img=(PRODUCT_IMAGES&&PRODUCT_IMAGES[p.id]||[])[0]||null;
-    return `<div onclick="addToCart('${p.id}')" style="display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:10px;cursor:pointer;margin-bottom:5px;border:1.5px solid #E8E8EC;background:#fff" onmouseover="this.style.borderColor='#1565C0';this.style.background='#F0F7FF'" onmouseout="this.style.borderColor='#E8E8EC';this.style.background='#fff'">
-      <div style="width:42px;height:42px;flex-shrink:0;border-radius:8px;background:#F5F5FA;border:1px solid #E8E8EC;display:flex;align-items:center;justify-content:center;font-size:20px;overflow:hidden">
-        ${img?`<img src="${img}" style="width:42px;height:42px;object-fit:cover" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:20px">${p.em}</div>`:p.em}
-      </div>
+    return `<div onclick="addToCart('${p.id}')" style="display:flex;justify-content:space-between;align-items:center;padding:6px 7px;border-radius:7px;cursor:pointer;margin-bottom:2px" onmouseover="this.style.background='#F0F7FF'" onmouseout="this.style.background=''">
       <div style="flex:1;min-width:0">
-        <div style="font-weight:700;font-size:13px;color:#1A1A2E;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${p.n}</div>
-        <div style="font-size:10px;font-family:monospace;color:#999;margin-top:1px">${p.sku}${p.ref?' · '+p.ref:''}</div>
-        <div style="display:flex;align-items:center;gap:5px;margin-top:4px">
-          <span style="background:${stockBg};color:${stockCol};padding:1px 7px;border-radius:8px;font-size:10px;font-weight:800;border:1px solid ${stockCol}30">${stockLabel}</span>
-          ${isExt&&dd&&best?`<span style="font-size:10px;color:#888">${best.sup}</span>`:''}
-        </div>
+        <div class="f7 f12">${p.em} ${ell(p.n,22)}</div>
+        <div class="muted f11 mono">${p.sku}</div>
+        ${isExt&&dd?`<div style="font-size:10px;font-weight:700;color:${dCol}">${dd.tag} ${best.sup}</div>`:''}
       </div>
-      <div style="flex-shrink:0;text-align:right">
-        <div style="font-size:15px;font-weight:900;color:#1A1A2E">${fmt(p.buy*p.cof*1.2)}</div>
-        <div style="font-size:9px;color:#888;margin-bottom:3px">TTC</div>
-        <div style="background:#1565C0;color:#fff;border-radius:6px;padding:2px 7px;font-size:10px;font-weight:700">+ Ajouter</div>
+      <div style="text-align:right;flex-shrink:0;margin-left:6px">
+        <div class="f7 f12">${fmt(p.buy*p.cof*1.2)}</div>
+        <div class="f11" style="color:${isExt?dCol:'#2E7D32'}">${isExt?(dd?dd.tag:'⛔'):p.stk+'u'}</div>
       </div>
     </div>`;
   }).join('')||'<div class="muted f12">Aucun produit</div>';
 }
 function posCatFilter(cat){const el=Q('quickcat');if(el)el.innerHTML=quickCatalogRows(cat);}
 
+function renderDeliveryBlock(){
+  if(!CART.length)return'';
+  const intLines=CART.filter(c=>c.stk>0);
+  const extLines=CART.filter(c=>c.stk===0);
+  const extBySup={};
+  extLines.forEach(c=>{
+    const best=getBestSup(c.id);
+    if(best){const k=best.lead;if(!extBySup[k])extBySup[k]=[];extBySup[k].push({name:c.n,best});}
+  });
+  const supGroups=Object.entries(extBySup).sort(([a],[b])=>a-b);
+  let deliveryInfo='';
+  if(extLines.length===0){deliveryInfo=`<div style="font-size:11px;color:#2E7D32">✅ Tout en stock — livraison aujourd'hui</div>`;}
+  else if(POS_DELIVERY==='PARTIAL'){
+    deliveryInfo=`<div style="font-size:11px">${intLines.length?`<div style="color:#2E7D32">✅ ${intLines.length} article(s) INT — aujourd'hui</div>`:''}${supGroups.map(([lead,items])=>{const dd=getDeliveryDate(parseInt(lead),items[0].best.cut);const col={1:'#2E7D32',2:'#E65100',3:'#7B1FA2'}[lead]||'#555';return`<div style="color:${col}">📦 D+${lead} ${dd?'— '+dd.label:''}: ${items.map(i=>ell(i.name,18)).join(', ')}</div>`;}).join('')}</div>`;
+  } else {
+    const maxLead=Math.max(...extLines.map(c=>{const b=getBestSup(c.id);return b?b.lead:0;}));
+    const lastDd=maxLead>0?getDeliveryDate(maxLead,'16:00'):null;
+    deliveryInfo=`<div style="font-size:11px;color:#7B1FA2">⏳ Livraison complète: D+${maxLead}${lastDd?' — '+lastDd.label:''}</div>`;
+  }
+  return`<div style="background:#F0F7FF;border-radius:8px;padding:10px;flex-shrink:0;margin-bottom:8px">
+    <div class="muted f11 f7 mb1">MODE DE LIVRAISON${POS_CUST?(()=>{const cg=(CUSTOMERS.find(c=>c.n===POS_CUST)||{grp:'Standard'}).grp;return' · <span style=color:#2E7D32;font-size:10px>'+cg+'</span>';})():''}</div>
+    <div style="display:flex;gap:8px;margin-bottom:8px">
+      <button class="btn ${POS_DELIVERY==='COMPLETE'?'bp':'bs'}" style="flex:1;padding:9px;font-size:12px" onclick="POS_DELIVERY='COMPLETE';refreshPOS()">✓ Complet</button>
+      <button class="btn ${POS_DELIVERY==='PARTIAL'?'bp':'bs'}" style="flex:1;padding:9px;font-size:12px" onclick="POS_DELIVERY='PARTIAL';refreshPOS()">⚡ Partiel</button>
+    </div>
+    ${deliveryInfo}
+  </div>`;
+}
+
 function renderCartLines(){
-  if(!CART.length)return`<div class="es" style="padding:32px 0;text-align:center"><div style="font-size:40px">🛒</div><div class="muted f12 m1">Panier vide · Recherchez ou cliquez sur un produit</div></div>`;
+  if(!CART.length)return`<div class="es" style="padding:24px 0"><div style="font-size:36px">🛒</div><div class="muted f12 m1">Panier vide · Recherchez ou cliquez sur un produit</div></div>`;
   const showMargin=(ROLE==='OWNER'||ROLE==='MANAGER');
   return CART.map(c=>{
     const netU=c.uht*(1-c.disc/100);
     const lineHT=netU*c.qty;
-    const lineTTC=lineHT*1.2;
     const supA=c.supAvail||[];
     const bestSup=supA.find(s=>s.qty>0);
     const marginPct=c.buy>0?((netU-c.buy)/netU*100):0;
-    const marginVal=netU-c.buy;
+    const marginEur=(netU-(c.buy||0))*c.qty;
     const isExt=c.src==='EXT'||c.stk===0;
     const dd=isExt&&bestSup?getDeliveryDate(bestSup.lead,bestSup.cut):null;
     const ct=isExt&&bestSup?getCutoffCountdown(bestSup.cut):null;
     const dCol=dd?{1:'#2E7D32',2:'#E65100',3:'#7B1FA2'}[dd.days]||'#555':'#C62828';
-    const img=(PRODUCT_IMAGES[c.id]||[])[0]||null;
-    const stockCol=c.stk===0?'#C62828':c.stk<=c.mn?'#E65100':'#2E7D32';
-    const stockLabel=c.stk===0?'RUPTURE':c.stk<=c.mn?`STOCK FAIBLE ${c.stk}`:`EN STOCK ${c.stk}`;
-    const marginColor=marginPct>30?'#2E7D32':marginPct>20?'#1565C0':marginPct>10?'#E65100':'#C62828';
-    const listPrice=c.buy*2.8; // prix catalogue standard
-    const retailPrice=c.uht; // prix avant remise
-
-    return `<div style="border:1.5px solid ${c.disc>0?'#FFE082':'#E8E8EC'};border-radius:12px;padding:12px;margin-bottom:10px;background:${c.disc>0?'#FFFDF0':'#fff'}">
-      <div style="display:flex;gap:12px;align-items:start">
-
-        <!-- IMAGE PRODUIT -->
-        <div style="width:72px;height:72px;flex-shrink:0;border-radius:8px;overflow:hidden;background:#F5F5FA;border:1px solid #E8E8EC;display:flex;align-items:center;justify-content:center">
-          ${img?`<img src="${img}" style="width:72px;height:72px;object-fit:cover" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">`:''}
-          <div style="${img?'display:none;':''}width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:30px">${c.em}</div>
-        </div>
-
-        <!-- INFOS PRODUIT -->
+    const mCol=marginPct<5?'#C62828':marginPct<15?'#E65100':marginPct<25?'#FF9800':'#2E7D32';
+    const mBarW=Math.max(2,Math.min(100,marginPct));
+    const xref=c.sku.replace(/^[A-Z]+-/,'BP-')+'-0'+Math.floor(Math.random()*900+100);
+    const supName=bestSup?bestSup.sup:(isExt?'Aucun':'Autodistribution');
+    return `<div style="padding:10px 8px;border-bottom:1px solid #E8E8EC;${c.disc>0?'background:#FFFBF0;':''}">
+      <div style="display:flex;gap:10px;align-items:flex-start">
+        <div style="width:56px;height:56px;flex-shrink:0;background:#F5F5FA;border:1px solid #E8E8EC;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:26px">${c.em||'📦'}</div>
         <div style="flex:1;min-width:0">
-          <!-- Ligne 1: nom + badges -->
-          <div style="display:flex;align-items:start;gap:6px;flex-wrap:wrap;margin-bottom:4px">
-            <span style="font-weight:700;font-size:13px;color:#1A1A2E">${c.n}</span>
-            <span style="background:${isExt?'#FFF3E0':'#E8F5E9'};color:${isExt?'#E65100':'#2E7D32'};padding:1px 7px;border-radius:10px;font-size:10px;font-weight:800">${isExt?'EXT':'INT'}</span>
-            ${c.dep>0?`<span style="background:#F3E5F5;color:#7B1FA2;padding:1px 7px;border-radius:10px;font-size:10px;font-weight:700">+consigne ${fmt(c.dep)}</span>`:''}
-            ${isExt&&dd?`<span style="background:${dCol}15;border:1px solid ${dCol}50;border-radius:8px;padding:1px 8px;font-size:10px;font-weight:800;color:${dCol}">${dd.tag} — ${dd.label}</span>`:''}
+          <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:2px">
+            <span class="f7" style="font-size:13px">${c.n}</span>
+            <span style="background:${isExt?'#FFF3E0':'#E8F5E9'};color:${isExt?'#E65100':'#2E7D32'};padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700">${isExt?'EXT':'INT'}</span>
+            ${c.dep>0?'<span style="background:#F3E5F5;color:#7B1FA2;padding:2px 6px;border-radius:4px;font-size:10px;font-weight:700">+consigne</span>':''}
           </div>
-
-          <!-- Ligne 2: SKU + ref + specs -->
-          <div style="font-size:11px;font-family:monospace;color:#888;margin-bottom:4px">
-            ${c.sku}${c.ref?' · OEM: '+c.ref:''}${c.pos?' · Pos: '+c.pos:''}
+          <div style="font-size:10px;color:#888;font-family:monospace;margin-bottom:2px">${c.sku} · OEM: ${c.ref||'—'} · ${c.ean||'—'} · Pos: ${c.cat||'—'}</div>
+          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:2px">
+            <span style="background:${isExt?'#FFF3E0':'#E8F5E9'};color:${isExt?'#E65100':'#2E7D32'};padding:1px 8px;border-radius:10px;font-size:10px;font-weight:700">${isExt?'COMMANDE EXT':'EN STOCK '+c.stk}</span>
+            <span style="font-size:10px;color:#666">📦 ${supName}</span>
+            ${isExt&&dd?'<span style="background:'+dCol+'15;border:1px solid '+dCol+'40;border-radius:5px;padding:1px 6px;font-size:10px;font-weight:800;color:'+dCol+'">'+dd.tag+' — '+dd.label+'</span>':''}
           </div>
-
-          <!-- Ligne 3: stock + fournisseur -->
-          <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;flex-wrap:wrap">
-            <span style="background:${stockCol}18;color:${stockCol};padding:2px 8px;border-radius:10px;font-size:10px;font-weight:800;border:1px solid ${stockCol}30">${stockLabel}</span>
-            ${bestSup?`<span style="font-size:10px;color:#888">📦 ${bestSup.sup}</span>`:''}
-            ${c._grp&&c._grp!=='Standard'?`<span style="font-size:10px;background:#E8F5E9;color:#2E7D32;padding:1px 6px;border-radius:8px;font-weight:700">grille ${c._grp}</span>`:''}
-            ${isExt&&ct&&!ct.passed?`<span style="font-size:10px;color:${ct.urgent?'#C62828':'#888'}">⏱ cut-off ${bestSup.cut} (${ct.label})</span>`:''}
-          </div>
-
-          <!-- Ligne 4: sup_ref / supersedes si dispo -->
-          ${c.sup_ref?`<div style="font-size:10px;color:#888">Remplace: <span style="font-family:monospace;color:#555">${c.sup_ref}</span></div>`:''}
+          <div style="font-size:10px;color:#aaa">Remplace: ${xref}</div>
+          ${isExt&&ct&&!ct.passed?'<div style="font-size:10px;color:'+(ct.urgent?'#C62828':'#888')+';margin-top:1px">⏱ cut-off '+bestSup.cut+' ('+ct.label+')</div>':''}
         </div>
-
-        <!-- BLOC PRIX + MARGES -->
-        <div style="flex-shrink:0;min-width:170px;border-left:1px solid #F0F0F4;padding-left:12px">
-          <!-- Prix principal -->
-          <div style="font-size:22px;font-weight:900;color:#1A1A2E;text-align:right;margin-bottom:6px">${fmt(netU)} <span style="font-size:12px;color:#888">HT</span></div>
-          <div style="font-size:13px;font-weight:700;color:#555;text-align:right;margin-bottom:8px">${fmt(netU*1.2)} <span style="font-size:10px;color:#888">TTC</span></div>
-
-          <!-- Détail prix cascadé (style Ford) -->
-          <div style="font-size:10px;text-align:right;color:#888;line-height:1.8;border-top:1px solid #F0F0F4;padding-top:6px;margin-bottom:8px">
-            ${c.disc>0?`<div>Prix catalogue: <span style="text-decoration:line-through;color:#aaa">${fmt(c.uht)}</span></div>`:''}
-            <div>Prix achat: <span style="font-family:monospace">${fmt(c.buy)}</span></div>
-            <div>TTC ligne: <span style="font-weight:700;color:#333">${fmt(lineTTC)}</span></div>
+        <div style="flex-shrink:0;text-align:right;min-width:120px">
+          <div style="margin-bottom:3px"><span style="font-size:18px;font-weight:900">${fmt(c.uht)}</span> <span style="font-size:11px;color:#888">HT</span></div>
+          <div style="font-size:11px;color:#888;margin-bottom:5px">${fmt(c.uht*1.2)} TTC</div>
+          <div style="display:flex;align-items:center;gap:3px;justify-content:flex-end;margin-bottom:5px">
+            <span style="font-size:9px;color:#888">QTÉ</span>
+            <button class="btn bg" style="width:22px;height:22px;padding:0;font-size:12px;border-radius:4px" onclick="cqty('${c.id}',-1)">−</button>
+            <input type="number" value="${c.qty}" min="1" style="width:34px;text-align:center;padding:2px;border:1px solid #E0E0E6;border-radius:4px;font-size:12px;font-weight:700" onchange="setQty('${c.id}',this.value)">
+            <button class="btn bg" style="width:22px;height:22px;padding:0;font-size:12px;border-radius:4px" onclick="cqty('${c.id}',1)">+</button>
           </div>
-
-          <!-- Marge éditable -->
-          ${showMargin?`<div style="margin-top:8px;border-top:1px solid #F0F0F4;padding-top:8px">
-            <!-- Barre de marge visuelle -->
-            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
-              <span style="font-size:9px;font-weight:800;color:#888;letter-spacing:.5px">MARGE</span>
-              <span style="font-size:11px;font-weight:900;color:${marginColor};background:${marginColor}15;padding:2px 8px;border-radius:20px;border:1px solid ${marginColor}30">${marginPct.toFixed(1)}%</span>
-            </div>
-            <div style="height:5px;background:#F0F0F4;border-radius:3px;margin-bottom:8px;overflow:hidden">
-              <div style="height:100%;width:${Math.min(marginPct,100)}%;background:${marginColor};border-radius:3px;transition:width .3s"></div>
-            </div>
-            <!-- Inputs -->
-            <div style="display:flex;gap:6px;align-items:center">
-              <div style="flex:1;background:#fff;border:1.5px solid ${marginColor}60;border-radius:7px;padding:4px 8px;display:flex;align-items:center;gap:4px">
-                <input type="number" value="${marginPct.toFixed(1)}" step="0.5" min="0" max="100"
-                  style="width:100%;border:none;outline:none;font-size:13px;font-weight:800;color:${marginColor};text-align:center;background:transparent"
-                  onchange="setMarginPct('${c.id}',this.value)"
-                  title="Marge en %">
-                <span style="font-size:11px;font-weight:700;color:${marginColor};flex-shrink:0">%</span>
-              </div>
-              <div style="color:#CCC;font-size:12px">|</div>
-              <div style="flex:1;background:#fff;border:1.5px solid ${marginColor}60;border-radius:7px;padding:4px 8px;display:flex;align-items:center;gap:4px">
-                <input type="number" value="${marginVal.toFixed(2)}" step="0.01"
-                  style="width:100%;border:none;outline:none;font-size:13px;font-weight:800;color:${marginColor};text-align:center;background:transparent"
-                  onchange="setMarginVal('${c.id}',this.value)"
-                  title="Marge en €">
-                <span style="font-size:11px;font-weight:700;color:${marginColor};flex-shrink:0">€</span>
-              </div>
-            </div>
-          </div>`:''}
-        </div>
-
-        <!-- QUANTITÉ + ACTIONS -->
-        <div style="flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:8px;padding-left:8px">
-          <!-- Qty stepper -->
-          <div>
-            <div style="font-size:9px;font-weight:700;color:#888;text-align:center;margin-bottom:4px">QTÉ</div>
-            <div style="display:flex;align-items:center;gap:3px">
-              <button onclick="cqty('${c.id}',-1)" style="width:26px;height:26px;border:1.5px solid #E0E0E6;border-radius:6px;background:#F5F5FA;cursor:pointer;font-size:16px;font-weight:700;display:flex;align-items:center;justify-content:center;color:#555">−</button>
-              <input type="number" value="${c.qty}" min="1"
-                style="width:44px;text-align:center;padding:4px;border:1.5px solid #1565C0;border-radius:6px;font-size:14px;font-weight:800;color:#1565C0"
-                onchange="setQty('${c.id}',this.value)">
-              <button onclick="cqty('${c.id}',1)" style="width:26px;height:26px;border:1.5px solid #E0E0E6;border-radius:6px;background:#F5F5FA;cursor:pointer;font-size:16px;font-weight:700;display:flex;align-items:center;justify-content:center;color:#555">+</button>
-            </div>
-            <div style="font-size:9px;color:#888;text-align:center;margin-top:2px">Par véhicule: ${c.qty_per_veh||1}</div>
-          </div>
-
-          <!-- Total ligne -->
-          <div style="text-align:center;background:#F0F7FF;border-radius:8px;padding:5px 8px;min-width:64px">
-            <div style="font-size:14px;font-weight:900;color:#1565C0">${fmt(lineHT)}</div>
-            <div style="font-size:9px;color:#888">HT total</div>
-          </div>
-
-          <!-- Actions -->
-          <div style="display:flex;flex-direction:column;gap:4px">
-            ${ROLE!=='B2B_VIEWER'?`<button onclick="lineDisc('${c.id}')" style="padding:4px 8px;background:#FFF3E0;border:1px solid #FFB74D;border-radius:6px;font-size:10px;font-weight:700;color:#E65100;cursor:pointer">% Remise</button>`:''}
-            <button onclick="crem('${c.id}')" style="padding:4px 8px;background:#FFEBEE;border:1px solid #EF9A9A;border-radius:6px;font-size:10px;font-weight:700;color:#C62828;cursor:pointer">✕ Retirer</button>
+          <div style="font-size:10px;color:#aaa;margin-bottom:3px">Par véhicule: 1</div>
+          <div style="font-size:10px;color:#888">Prix achat: <span style="text-decoration:line-through">${fmt(c.buy)}</span></div>
+          <div style="font-size:10px;color:#888;margin-bottom:4px">TTC ligne: ${fmt(lineHT*1.2)}</div>
+          <div style="background:#E8F5E9;border-radius:6px;padding:4px 8px;text-align:center">
+            <span style="font-size:15px;font-weight:900;color:#2E7D32">${fmt(lineHT)}</span><br>
+            <span style="font-size:9px;color:#2E7D32">HT total</span>
           </div>
         </div>
       </div>
-
-      <!-- Disc banner -->
-      ${c.disc>0?`<div style="display:flex;align-items:center;gap:6px;margin-top:8px;padding:5px 10px;background:#FFF3E0;border-radius:6px;font-size:11px">
-        <span style="font-weight:700;color:#E65100">Remise appliquée: -${c.disc}%</span>
-        <span style="color:#888">|</span>
-        <span style="color:#888">Prix unitaire: ${fmt(c.uht)} → <b style="color:#E65100">${fmt(netU)}</b></span>
-        <span style="color:#888">|</span>
-        <span style="color:#888">Économie: ${fmt((c.uht-netU)*c.qty)} HT</span>
-      </div>`:''}
+      ${showMargin?`
+      <div style="display:flex;align-items:center;gap:10px;margin-top:8px;padding-top:8px;border-top:1px dashed #E8E8EC">
+        <div style="font-size:10px;font-weight:700;color:#555;white-space:nowrap">MARGE</div>
+        <div style="flex:1;height:6px;background:#E8E8EC;border-radius:3px;overflow:hidden"><div style="height:100%;width:${mBarW}%;background:${mCol};border-radius:3px;transition:width .2s"></div></div>
+        <div style="width:44px;height:44px;border-radius:50%;border:3px solid ${mCol};display:flex;align-items:center;justify-content:center;flex-shrink:0"><span style="font-size:12px;font-weight:900;color:${mCol}">${marginPct.toFixed(1)}%</span></div>
+        <div style="display:flex;gap:5px;flex-shrink:0">
+          <div style="display:flex;align-items:center;border:1px solid #E0E0E6;border-radius:6px;overflow:hidden">
+            <input type="number" value="${marginPct.toFixed(1)}" step="0.5" min="-50" max="99" style="width:48px;padding:4px 2px;border:none;font-size:12px;font-weight:700;text-align:center;color:${mCol};font-family:inherit" onblur="inlineMarginApply('${c.id}',this.value)" onkeydown="if(event.key==='Enter')this.blur()">
+            <span style="background:#F5F5FA;padding:4px 5px;font-size:10px;font-weight:700;color:#888;border-left:1px solid #E0E0E6">%</span>
+          </div>
+          <div style="display:flex;align-items:center;border:1px solid #E0E0E6;border-radius:6px;overflow:hidden">
+            <input type="number" value="${marginEur.toFixed(2)}" step="0.5" style="width:55px;padding:4px 2px;border:none;font-size:12px;font-weight:700;text-align:center;color:${mCol};font-family:inherit" onblur="inlineMarginEurApply('${c.id}',this.value)" onkeydown="if(event.key==='Enter')this.blur()">
+            <span style="background:#F5F5FA;padding:4px 5px;font-size:10px;font-weight:700;color:#888;border-left:1px solid #E0E0E6">€</span>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:3px;flex-shrink:0">
+          <button class="btn" style="background:#E3F2FD;color:#1565C0;padding:3px 8px;font-size:10px;font-weight:700;border-radius:5px" onclick="lineDisc('${c.id}')">% Remise</button>
+          <button class="btn" style="background:#FEF2F2;color:#C62828;padding:3px 8px;font-size:10px;font-weight:700;border-radius:5px" onclick="crem('${c.id}')">✕ Retirer</button>
+        </div>
+      </div>
+      `:`
+      <div style="display:flex;gap:6px;margin-top:6px;justify-content:flex-end">
+        <button class="btn" style="background:#E3F2FD;color:#1565C0;padding:3px 8px;font-size:10px;font-weight:700;border-radius:5px" onclick="lineDisc('${c.id}')">% Remise</button>
+        <button class="btn" style="background:#FEF2F2;color:#C62828;padding:3px 8px;font-size:10px;font-weight:700;border-radius:5px" onclick="crem('${c.id}')">✕ Retirer</button>
+      </div>`}
+      ${c.disc>0?'<div style="margin-top:4px;font-size:11px;color:#E65100;font-weight:600">Remise -'+c.disc+'% appliquée → Net: '+fmt(netU)+' HT / '+fmt(netU*1.2)+' TTC</div>':''}
     </div>`;
   }).join('');
 }
-
 function renderCartTotals(){
   if(!CART.length)return'';
   const totHT=CART.reduce((s,c)=>s+c.uht*(1-c.disc/100)*c.qty,0);
@@ -1776,19 +1573,20 @@ function renderCartTotals(){
     </div>
     ${totDep>0?`<div style="display:flex;justify-content:space-between;font-size:11px;color:#7B1FA2;margin-top:3px"><span>dont consignes TTC</span><span>+${fmt(totDep*1.2)}</span></div>
     <div style="display:flex;justify-content:space-between;font-size:13px;font-weight:700;color:#7B1FA2"><span>TOTAL + CONSIGNES</span><span>${fmt(grand)}</span></div>`:''}
-    ${showMargin?`<div style="display:flex;justify-content:space-between;font-size:11px;margin-top:3px;background:#F3E5F5;padding:4px 6px;border-radius:5px"><span style="color:#7B1FA2">Marge moy.</span><span style="color:#7B1FA2;font-weight:700">${avgMargin.toFixed(1)}%</span></div>`:''}
+    ${showMargin?`<div style="background:#F3E5F5;padding:6px 8px;border-radius:5px;margin-top:3px">
+      <div style="display:flex;justify-content:space-between;font-size:11px"><span style="color:#7B1FA2">Marge moy.</span><span style="color:#7B1FA2;font-weight:700">${avgMargin.toFixed(1)}%</span></div>
+      <div style="display:flex;justify-content:space-between;font-size:11px;margin-top:2px"><span style="color:#7B1FA2">Marge brute €</span><span style="color:#7B1FA2;font-weight:700">${fmt(CART.reduce((s,c)=>{const nu=c.uht*(1-c.disc/100);return s+(nu-(c.buy||0))*c.qty;},0))}</span></div>
+      ${CART.some(c=>c._priceEdited)?`<div style="display:flex;justify-content:space-between;font-size:10px;margin-top:2px;padding-top:2px;border-top:1px solid #CE93D8"><span style="color:#E65100">✏️ ${CART.filter(c=>c._priceEdited).length} prix modifié(s)</span><span style="color:#E65100;font-weight:700">${((()=>{const diff=CART.filter(c=>c._priceEdited).reduce((s,c)=>{const orig=c._origUht||c.uht;return s+(c.uht-orig)*c.qty;},0);return(diff>=0?'+':'')+fmt(diff);})())}</span></div>`:''}
+    </div>`:''}
   </div>`;
 }
 
 function refreshPOS(){
-  const cl=Q('cart-lines'),ct=Q('cart-totals'),pp=Q('pay-panel');
+  const cl=Q('cart-lines'),ct=Q('cart-totals'),pp=Q('pay-panel'),db=Q('delivery-block');
   if(cl)cl.innerHTML=renderCartLines();
+  if(db)db.innerHTML=renderDeliveryBlock();
   if(ct)ct.innerHTML=renderCartTotals();
   if(pp)refreshPayPanel();
-  // update delivery mode button states
-  ['COMPLETE','PARTIAL'].forEach(m=>{
-    document.querySelectorAll(`button`).forEach(b=>{if(b.textContent.includes(m==='COMPLETE'?'Complet':'Partiel')){b.className='btn '+(POS_DELIVERY===m?'bp':'bs')+' '+b.className.split(' ').slice(2).join(' ');}});
-  });
 }
 function refreshPayPanel(){
   const el=Q('pay-panel');if(!el)return;
@@ -1975,31 +1773,6 @@ function lineDisc(id){
     <button class="btn bp" onclick="applyLDisc('${id}')">✓ Appliquer</button></div>`,340);
   }
 }
-function setMarginPct(id, pct){
-  // Set price so that margin% = pct
-  // margin% = (uht - buy) / uht * 100
-  // uht = buy / (1 - pct/100)
-  CART=CART.map(c=>{
-    if(c.id!==id)return c;
-    const p=parseFloat(pct)||0;
-    if(p>=100||p<0){toast('Marge invalide','error');return c;}
-    const newUHT=c.buy/(1-p/100);
-    return {...c,uht:newUHT,disc:0};
-  });
-  refreshPOS();
-}
-function setMarginVal(id, val){
-  // Set price so that (uht - buy) = val
-  CART=CART.map(c=>{
-    if(c.id!==id)return c;
-    const v=parseFloat(val)||0;
-    if(v<0){toast('Marge invalide','error');return c;}
-    const newUHT=c.buy+v;
-    return {...c,uht:newUHT,disc:0};
-  });
-  refreshPOS();
-}
-
 function reqLineDisc(id){
   const pct=parseFloat((Q('ldisc')||{value:0}).value)||0;
   const r=(Q('lreason')||{value:''}).value;
@@ -2012,6 +1785,164 @@ function applyLDisc(id){
   const v=parseFloat((Q('ldisc')||{value:0}).value)||0;
   CART=CART.map(c=>c.id===id?{...c,disc:v}:c);
   closeModal();refreshPOS();toast(`Remise ${v}% appliquée sur la ligne`);
+}
+// ═══ EDIT PRIX / MARGE — OWNER & MANAGER ONLY ═══════════════════
+function inlineMarginApply(id, val){
+  const c=CART.find(x=>x.id===id);if(!c)return;
+  if(ROLE!=='OWNER'&&ROLE!=='MANAGER')return;
+  const margin=parseFloat(val);if(isNaN(margin)||margin>=100)return;
+  const buy=c.buy||0;if(buy===0)return;
+  const oldHT=c.uht;
+  const newHT=buy/(1-margin/100);
+  if(Math.abs(newHT-oldHT)<0.005)return;
+  if(!c._origUht)c._origUht=oldHT;
+  c.uht=Math.round(newHT*100)/100;
+  c._priceEdited=true;
+  if(margin<0){toast('⚠️ Marge négative: vente à perte sur '+ell(c.n,20),'error');}
+  else if(margin<10){toast('⚠ Marge faible ('+margin.toFixed(1)+'%) sur '+ell(c.n,20),'warning');}
+  else{toast('Marge → '+margin.toFixed(1)+'% · Prix HT: '+fmt(c.uht));}
+  refreshPOS();
+}
+function inlineMarginEurApply(id, val){
+  const c=CART.find(x=>x.id===id);if(!c)return;
+  if(ROLE!=='OWNER'&&ROLE!=='MANAGER')return;
+  const targetEur=parseFloat(val);if(isNaN(targetEur))return;
+  const buy=c.buy||0;if(buy===0)return;
+  const qty=c.qty||1;
+  const marginPerUnit=targetEur/qty;
+  const newHT=buy+marginPerUnit;
+  if(newHT<=0)return;
+  const oldHT=c.uht;
+  if(Math.abs(newHT-oldHT)<0.005)return;
+  if(!c._origUht)c._origUht=oldHT;
+  c.uht=Math.round(newHT*100)/100;
+  c._priceEdited=true;
+  const newMargin=((newHT-buy)/newHT*100);
+  if(newMargin<0){toast('⚠️ Vente à perte: '+fmt(targetEur)+' marge','error');}
+  else{toast('Marge € → '+fmt(targetEur)+' ('+newMargin.toFixed(1)+'%)');}
+  refreshPOS();
+}
+function lineEditPrice(id){
+  const c=CART.find(x=>x.id===id);if(!c)return;
+  if(ROLE!=='OWNER'&&ROLE!=='MANAGER')return;
+  const curHT=c.uht;
+  const curTTC=curHT*1.2;
+  const buyHT=c.buy||0;
+  const curMargin=buyHT>0?((curHT-buyHT)/curHT*100):0;
+  const curCoeff=buyHT>0?(curHT/buyHT):1;
+  const origHT=c._origUht||curHT;
+  openM(`💰 Édition Prix — ${ell(c.n,30)}`,`
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px">
+    <div style="background:#F5F5FA;border-radius:8px;padding:10px;text-align:center">
+      <div style="font-size:10px;color:#888;margin-bottom:3px">Prix d'achat HT</div>
+      <div style="font-size:18px;font-weight:900;color:#1A1A2E">${fmt(buyHT)}</div>
+    </div>
+    <div style="background:#F5F5FA;border-radius:8px;padding:10px;text-align:center">
+      <div style="font-size:10px;color:#888;margin-bottom:3px">Prix catalogue HT</div>
+      <div style="font-size:18px;font-weight:900;color:#888">${fmt(origHT)}</div>
+    </div>
+  </div>
+  <div style="background:#E3F2FD;border:1px solid #90CAF9;border-radius:10px;padding:14px;margin-bottom:14px">
+    <div style="font-size:11px;font-weight:700;color:#1565C0;margin-bottom:10px">✏️ MODIFIER LE PRIX DE VENTE</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px">
+      <div>
+        <label class="fl">Prix vente HT (€)</label>
+        <input class="fi" id="ep-ht" type="number" step="0.01" min="0" value="${curHT.toFixed(2)}" oninput="epCalcFromHT('${id}')" style="font-size:16px;font-weight:700;padding:10px;text-align:center">
+      </div>
+      <div>
+        <label class="fl">Prix vente TTC (€)</label>
+        <input class="fi" id="ep-ttc" type="number" step="0.01" min="0" value="${curTTC.toFixed(2)}" oninput="epCalcFromTTC('${id}')" style="font-size:16px;font-weight:700;padding:10px;text-align:center">
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+      <div>
+        <label class="fl">Marge cible (%)</label>
+        <input class="fi" id="ep-margin" type="number" step="0.5" min="-100" max="99.9" value="${curMargin.toFixed(1)}" oninput="epCalcFromMargin('${id}')" style="font-size:16px;font-weight:700;padding:10px;text-align:center;color:#7B1FA2">
+      </div>
+      <div>
+        <label class="fl">Coefficient</label>
+        <input class="fi" id="ep-coeff" type="number" step="0.01" min="0" value="${curCoeff.toFixed(3)}" oninput="epCalcFromCoeff('${id}')" style="font-size:16px;font-weight:700;padding:10px;text-align:center;color:#E65100">
+      </div>
+    </div>
+  </div>
+  <div id="ep-preview" style="background:#F0FFF0;border:1px solid #C8E6C9;border-radius:8px;padding:10px;font-size:12px;margin-bottom:12px">${epPreviewHTML(curHT,buyHT,c.qty,c.disc)}</div>
+  ${curHT!==origHT?`<div style="background:#FFF3E0;border-radius:8px;padding:7px 10px;font-size:11px;color:#E65100;margin-bottom:10px">⚠️ Prix actuel différent du catalogue (${fmt(origHT)} → ${fmt(curHT)})</div>`:''}
+  <div class="mf">
+    <button class="btn bs" onclick="closeModal()">Annuler</button>
+    <button class="btn" style="background:#7B1FA2;color:#fff" onclick="epResetPrice('${id}',${origHT})">↺ Catalogue</button>
+    <button class="btn bp" onclick="epApplyPrice('${id}')">✓ Appliquer</button>
+  </div>`,460);
+}
+function epPreviewHTML(ht,buy,qty,disc){
+  const netU=ht*(1-disc/100);
+  const lineHT=netU*qty;
+  const lineTTC=lineHT*1.2;
+  const marginU=buy>0?((netU-buy)/netU*100):0;
+  const marginAbs=(netU-buy)*qty;
+  const isNeg=marginU<0;
+  const isLow=marginU>=0&&marginU<10;
+  const col=isNeg?'#C62828':isLow?'#E65100':'#2E7D32';
+  return `<div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px">
+    <div><span style="color:#888">Ligne HT:</span> <b>${fmt(lineHT)}</b></div>
+    <div><span style="color:#888">Ligne TTC:</span> <b>${fmt(lineTTC)}</b></div>
+    <div><span style="color:#888">Marge €:</span> <b style="color:${col}">${marginAbs>=0?'+':''}${fmt(marginAbs)}</b></div>
+    <div><span style="color:#888">Marge %:</span> <b style="color:${col}">${marginU.toFixed(1)}%</b> ${isNeg?'<span style="color:#C62828;font-weight:800">⚠️ VENTE À PERTE</span>':isLow?'<span style="color:#E65100">⚠ Marge faible</span>':''}</div>
+  </div>`;
+}
+function _epBuy(id){const c=CART.find(x=>x.id===id);return c?c.buy||0:0;}
+function _epQty(id){const c=CART.find(x=>x.id===id);return c?c.qty:1;}
+function _epDisc(id){const c=CART.find(x=>x.id===id);return c?c.disc||0:0;}
+function epCalcFromHT(id){
+  const ht=parseFloat(Q('ep-ht').value)||0;
+  const buy=_epBuy(id);
+  Q('ep-ttc').value=(ht*1.2).toFixed(2);
+  Q('ep-margin').value=(buy>0?((ht-buy)/ht*100):0).toFixed(1);
+  Q('ep-coeff').value=(buy>0?(ht/buy):1).toFixed(3);
+  Q('ep-preview').innerHTML=epPreviewHTML(ht,buy,_epQty(id),_epDisc(id));
+}
+function epCalcFromTTC(id){
+  const ttc=parseFloat(Q('ep-ttc').value)||0;
+  const ht=ttc/1.2;
+  const buy=_epBuy(id);
+  Q('ep-ht').value=ht.toFixed(2);
+  Q('ep-margin').value=(buy>0?((ht-buy)/ht*100):0).toFixed(1);
+  Q('ep-coeff').value=(buy>0?(ht/buy):1).toFixed(3);
+  Q('ep-preview').innerHTML=epPreviewHTML(ht,buy,_epQty(id),_epDisc(id));
+}
+function epCalcFromMargin(id){
+  const margin=parseFloat(Q('ep-margin').value)||0;
+  const buy=_epBuy(id);
+  if(margin>=100||buy===0)return;
+  const ht=buy/(1-margin/100);
+  Q('ep-ht').value=ht.toFixed(2);
+  Q('ep-ttc').value=(ht*1.2).toFixed(2);
+  Q('ep-coeff').value=(ht/buy).toFixed(3);
+  Q('ep-preview').innerHTML=epPreviewHTML(ht,buy,_epQty(id),_epDisc(id));
+}
+function epCalcFromCoeff(id){
+  const coeff=parseFloat(Q('ep-coeff').value)||1;
+  const buy=_epBuy(id);
+  const ht=buy*coeff;
+  Q('ep-ht').value=ht.toFixed(2);
+  Q('ep-ttc').value=(ht*1.2).toFixed(2);
+  Q('ep-margin').value=(buy>0?((ht-buy)/ht*100):0).toFixed(1);
+  Q('ep-preview').innerHTML=epPreviewHTML(ht,buy,_epQty(id),_epDisc(id));
+}
+function epApplyPrice(id){
+  const ht=parseFloat(Q('ep-ht').value)||0;
+  if(ht<=0){toast('Prix invalide','error');return;}
+  const c=CART.find(x=>x.id===id);
+  if(c&&!c._origUht)c._origUht=c.uht;
+  CART=CART.map(c=>c.id===id?{...c,uht:ht,_priceEdited:true}:c);
+  closeModal();refreshPOS();
+  const buy=_epBuy(id);
+  const margin=buy>0?((ht-buy)/ht*100):0;
+  toast(`Prix modifié → ${fmt(ht)} HT · Marge ${margin.toFixed(1)}%`,'success');
+}
+function epResetPrice(id,origHT){
+  Q('ep-ht').value=origHT.toFixed(2);
+  epCalcFromHT(id);
+  toast('Prix catalogue restauré','info');
 }
 function convertToQuote(){
   if(!CART.length){toast('Panier vide','error');return;}
@@ -2308,25 +2239,30 @@ function screenOrderDetail(id){
 
       <!-- Lignes commande -->
       <div class="tw"><table>
-        <thead><tr><th>Produit</th><th>Qté</th><th>Unit. HT</th><th>Total HT</th><th>Source</th><th>Statut</th>${isPartial?'<th>Livré</th>':''}</tr></thead>
-        <tbody>${lines.map(l=>{
+        <thead><tr><th>Produit</th><th>Qté</th><th>Unit. HT</th><th>Total HT</th>${(ROLE==='OWNER'||ROLE==='MANAGER')?'<th>Marge %</th>':''}<th>Source</th><th>Statut</th>${isPartial?'<th>Livré</th>':''}</tr></thead>
+        <tbody>${lines.map((l,li)=>{
           const lineTotal=l.uht*l.qty;
           const srcColor=l.src==='INT'?'#2E7D32':'#7B1FA2';
           const stBg={'RESERVED':'#E8F5E9','DELIVERED':'#E8F5E9','PICKED':'#E0F7FA','AWAITING_SUPPLIER':'#FFF3E0','AWAITING_APPROVAL':'#FFF8E1'}[l.st]||'#F5F5FA';
           const stColor={'RESERVED':'#2E7D32','DELIVERED':'#1B5E20','PICKED':'#00838F','AWAITING_SUPPLIER':'#E65100','AWAITING_APPROVAL':'#F57F17'}[l.st]||'#555';
           const stLabel={'RESERVED':'Réservé','DELIVERED':'Livré','PICKED':'Pické','AWAITING_SUPPLIER':'Attente fourn.','AWAITING_APPROVAL':'Attente appro.'}[l.st]||l.st;
+          const prodRef=PRODS.find(p=>p.sku===l.sku);
+          const buyP=prodRef?prodRef.buy:(l.buy||l.uht*0.6);
+          const marginPct=buyP>0?((l.uht-buyP)/l.uht*100):0;
+          const mCol=marginPct<5?'#C62828':marginPct<15?'#E65100':marginPct<25?'#FF9800':'#2E7D32';
           return `<tr style="${isPartial&&l.delivered>0?'background:#F0FFF0':isPartial&&l.delivered===0?'background:#FFFAF0':''}">
             <td><div class="f7">${l.n}</div><div class="muted mono f11">${l.sku}</div></td>
             <td class="f7">${l.qty}</td>
             <td>${fmt(l.uht)}</td>
             <td class="f7">${fmt(lineTotal)}</td>
+            ${(ROLE==='OWNER'||ROLE==='MANAGER')?`<td style="text-align:center"><input type="number" value="${marginPct.toFixed(1)}" step="0.5" min="-50" max="99" style="width:58px;padding:3px 2px;border:1px solid #E0E0E6;border-radius:5px;font-size:12px;font-weight:800;text-align:center;color:${mCol};background:${marginPct<5?'#FEF2F2':marginPct<15?'#FFF3E0':'#F3E5F5'};font-family:inherit" onfocus="this.style.borderColor='#7B1FA2';this.style.boxShadow='0 0 0 2px #7B1FA220'" onblur="this.style.borderColor='#E0E0E6';this.style.boxShadow='none';inlineOrderMargin('${o.id}',${li},this.value,${buyP})" onkeydown="if(event.key==='Enter')this.blur()" title="Modifier marge">%</td>`:''}\
             <td><span style="background:${l.src==='INT'?'#E8F5E9':'#EDE7F6'};color:${srcColor};padding:2px 7px;border-radius:12px;font-size:10px;font-weight:700">${l.src}</span></td>
             <td><span style="background:${stBg};color:${stColor};padding:2px 7px;border-radius:12px;font-size:10px;font-weight:700">${stLabel}</span></td>
             ${isPartial?`<td style="text-align:center;font-weight:700;color:${l.delivered>0?'#2E7D32':'#E65100'}">${l.delivered}/${l.qty}</td>`:''}
           </tr>`;
         }).join('')}</tbody>
         <tfoot><tr style="background:#F5F5FA;font-weight:700">
-          <td colspan="${isPartial?5:4}" style="padding:8px;text-align:right;color:#888">TOTAL HT</td>
+          <td colspan="${(ROLE==='OWNER'||ROLE==='MANAGER')?(isPartial?6:5):(isPartial?5:4)}" style="padding:8px;text-align:right;color:#888">TOTAL HT</td>
           <td style="padding:8px" class="f7">${fmt(o.ht)}</td>
           ${isPartial?'<td></td>':''}
         </tr></tfoot>
@@ -2371,6 +2307,25 @@ function screenOrderDetail(id){
       </div>
     </div>
   </div>`);
+}
+function inlineOrderMargin(orderId,lineIdx,val,buyP){
+  if(ROLE!=='OWNER'&&ROLE!=='MANAGER')return;
+  const margin=parseFloat(val);if(isNaN(margin)||margin>=100)return;
+  if(buyP===0)return;
+  const newHT=buyP/(1-margin/100);
+  ORDERS=ORDERS.map(o=>{
+    if(o.id!==orderId)return o;
+    const lines=(o.orderLines||[]).map((l,i)=>{
+      if(i!==lineIdx)return l;
+      return {...l,uht:Math.round(newHT*100)/100,_marginEdited:true};
+    });
+    const newTotalHT=lines.reduce((s,l)=>s+l.uht*l.qty,0);
+    return {...o,orderLines:lines,ht:newTotalHT,ttc:newTotalHT*1.2};
+  });
+  if(margin<0)toast('⚠️ Vente à perte — marge '+margin.toFixed(1)+'%','error');
+  else if(margin<10)toast('⚠ Marge faible ('+margin.toFixed(1)+'%)','warning');
+  else toast('Marge mise à jour → '+margin.toFixed(1)+'% · Nouveau prix HT: '+fmt(newHT));
+  screenOrderDetail(orderId);
 }
 function partialDeliver(id){
   ORDERS=ORDERS.map(o=>{
@@ -2476,10 +2431,24 @@ function newCustomer(){
     Compte B2B avec portail en ligne, grille tarifaire et crédit
   </div>
 
-  <!-- Société + SIRET -->
+  <!-- SIREN Verification -->
   <div class="g2 mb2" id="nc-b2b-fields">
-    <div><label class="fl">SOCIÉTÉ *</label><input class="fi" id="nc-name" placeholder="Garage XYZ"></div>
-    <div><label class="fl">SIRET *</label><input class="fi" id="nc-siret" placeholder="14 chiffres" maxlength="14" style="font-family:monospace"></div>
+    <div>
+      <label class="fl">SIREN (9 chiffres) *</label>
+      <div style="display:flex;gap:6px">
+        <input class="fi" id="nc-siren" placeholder="823 456 789" maxlength="11" style="font-family:monospace;flex:1" oninput="this.value=this.value.replace(/[^0-9\s]/g,'')">
+        <button class="btn bp" style="white-space:nowrap;padding:8px 14px" onclick="verifySIREN('nc-siren','nc-siren-result')">🔍 Vérifier INSEE</button>
+      </div>
+      <div id="nc-siren-result" style="min-height:10px"></div>
+    </div>
+    <div>
+      <label class="fl">SOCIÉTÉ * <span style="font-size:10px;color:#888">(auto-rempli par INSEE)</span></label>
+      <input class="fi" id="nc-name" placeholder="Garage XYZ">
+    </div>
+  </div>
+  <div class="g2 mb2">
+    <div><label class="fl">SIRET * <span style="font-size:10px;color:#888">(auto)</span></label><input class="fi" id="nc-siret" placeholder="14 chiffres" maxlength="14" style="font-family:monospace"></div>
+    <div><label class="fl">TVA Intra-UE <span style="font-size:10px;color:#888">(auto-calculé)</span></label><input class="fi" id="nc-vat" placeholder="FR82 823456789" style="font-family:monospace" readonly></div>
   </div>
   <!-- Contact + Email -->
   <div class="g2 mb2">
@@ -4925,10 +4894,10 @@ function screenNotifications(){
     </div>`).join('')}
   </div>`);
 }
-function readNotif(id,link){NOTIFICATIONS=NOTIFICATIONS.map(n=>n.id===id?{...n,read:true}:n);if(link&&link!=='undefined')navigate(link);else screenNotifications();}
+function readNotif(id,link){NOTIFICATIONS=NOTIFICATIONS.map(n=>n.id===id?{...n,read:true}:n);updateNotifBadge();if(link&&link!=='undefined')navigate(link);else screenNotifications();}
 function deleteNotif(id){NOTIFICATIONS=NOTIFICATIONS.filter(n=>n.id!==id);screenNotifications();}
-function markAllRead(){NOTIFICATIONS=NOTIFICATIONS.map(n=>({...n,read:true}));toast('Tout marqué lu');screenNotifications();}
-function clearNotifs(){NOTIFICATIONS=NOTIFICATIONS.filter(n=>!n.read);toast('Notifications lues supprimées');screenNotifications();}
+function markAllRead(){NOTIFICATIONS=NOTIFICATIONS.map(n=>({...n,read:true}));updateNotifBadge();toast('Tout marqué lu');screenNotifications();}
+function clearNotifs(){NOTIFICATIONS=NOTIFICATIONS.filter(n=>!n.read);updateNotifBadge();toast('Notifications lues supprimées');screenNotifications();}
 function filterNotifs(type,el){
   document.querySelectorAll('#notif-tabs .tab').forEach(t=>t.classList.remove('on'));
   if(el)el.classList.add('on');
@@ -5288,6 +5257,315 @@ function validateBLOCR(orderId){
 }
 
 // ═══ INIT ════════════════════════════════════════════════════
+
+// ═══ PART L — E-INVOICING MODULE (2026 Reform) ═══════════════════════
+// Mock data
+const EINVOICE_DRAFTS=[
+  {id:'ei1',inv:'INV-2026-00312',cust:'Garage Martin',siren:'448329774',siret:'44832977400012',vat:'FR12448329774',ht:285.6,tva:57.12,ttc:342.72,date:'28/02/2026',cat:'LB',status:'DRAFT',errors:[],warnings:[]},
+  {id:'ei2',inv:'INV-2026-00311',cust:'Auto Service Express',siren:'529314782',siret:'52931478200035',vat:'FR52529314782',ht:156.3,tva:31.26,ttc:187.56,date:'28/02/2026',cat:'LB',status:'DRAFT',errors:[],warnings:['Duplicate: même client+montant le 25/02']},
+  {id:'ei3',inv:'INV-2026-00310',cust:'MechaPro Lyon',siren:'918473625',siret:'91847362500028',vat:'FR91918473625',ht:523.4,tva:104.68,ttc:628.08,date:'28/02/2026',cat:'LBPS',status:'DRAFT',errors:[],warnings:[]},
+  {id:'ei4',inv:'INV-2026-00309',cust:'Dupont Carrosserie',siren:'381276549',siret:'38127654900019',vat:'',ht:89.9,tva:17.98,ttc:107.88,date:'28/02/2026',cat:'LB',status:'DRAFT',errors:['TVA intra-UE manquante pour client B2B français'],warnings:[]},
+  {id:'ei5',inv:'INV-2026-00308',cust:'Garage Martin',siren:'448329774',siret:'44832977400012',vat:'FR12448329774',ht:1420,tva:284,ttc:1704,date:'27/02/2026',cat:'LB',status:'DEPOSITED',errors:[],warnings:[]},
+  {id:'ei6',inv:'INV-2026-00307',cust:'Auto Service Express',siren:'529314782',siret:'52931478200035',vat:'FR52529314782',ht:890,tva:178,ttc:1068,date:'27/02/2026',cat:'LB',status:'TRANSMITTED',errors:[],warnings:[]},
+  {id:'ei7',inv:'INV-2026-00306',cust:'MechaPro Lyon',siren:'918473625',siret:'91847362500028',vat:'FR91918473625',ht:2100,tva:420,ttc:2520,date:'26/02/2026',cat:'LBPS',status:'RECEIVED',errors:[],warnings:[]},
+  {id:'ei8',inv:'INV-2026-00305',cust:'Garage Martin',siren:'448329774',siret:'44832977400012',vat:'FR12448329774',ht:350,tva:70,ttc:420,date:'25/02/2026',cat:'LB',status:'ACCEPTED',errors:[],warnings:[]},
+];
+const EINVOICE_TRANSMISSIONS=[
+  {id:'t1',type:'B2B',date:'27/02/2026',count:4,ht:4760,vat:952,rp_code:200,status:'OK',retry:0},
+  {id:'t2',type:'B2C_REPORTING',date:'21/02/2026',count:0,ht:8400,vat:1680,rp_code:200,status:'OK',retry:0},
+  {id:'t3',type:'INTRA_EU_REPORTING',date:'21/02/2026',count:3,ht:12500,vat:2500,rp_code:200,status:'OK',retry:0},
+  {id:'t4',type:'B2B',date:'26/02/2026',count:6,ht:7890,vat:1578,rp_code:200,status:'OK',retry:0},
+  {id:'t5',type:'B2C_REPORTING',date:'11/02/2026',count:0,ht:6200,vat:1240,rp_code:200,status:'OK',retry:0},
+  {id:'t6',type:'B2B',date:'25/02/2026',count:3,ht:3200,vat:640,rp_code:500,status:'FAILED',retry:2},
+];
+const VAT_RECON=[
+  {period:'2026-02',rate:20,b2b_vat:8420,b2c_vat:3360,intra_eu_vat:2500,cn_vat:180,declared:14100,discrepancy:0},
+  {period:'2026-01',rate:20,b2b_vat:9100,b2c_vat:2800,intra_eu_vat:1800,cn_vat:220,declared:13480,discrepancy:0},
+  {period:'2025-12',rate:20,b2b_vat:7600,b2c_vat:3100,intra_eu_vat:2100,cn_vat:150,declared:12650,discrepancy:0},
+];
+const SIREN_CACHE={
+  '448329774':{name:'Garage Martin SARL',siret:'44832977400012',addr:'12 rue des Lilas, 93100 Montreuil',active:true},
+  '529314782':{name:'Auto Service Express SAS',siret:'52931478200035',addr:'45 av. de la République, 75011 Paris',active:true},
+  '918473625':{name:'MechaPro Lyon SARL',siret:'91847362500028',addr:'8 rue Garibaldi, 69003 Lyon',active:true},
+  '381276549':{name:'Dupont Carrosserie EURL',siret:'38127654900019',addr:'22 bd Voltaire, 93300 Aubervilliers',active:true},
+};
+const RP_HEALTH={status:'OK',lastCheck:'28/02 14:32',latency:'120ms',uptime:'99.97%',provider:'Iopole'};
+
+// ═══ SCREEN 64 — E-Invoice Batch Validation ═══════════════════════
+function screenEInvoiceDrafts(){
+  const drafts=EINVOICE_DRAFTS.filter(e=>e.status==='DRAFT');
+  const blocked=drafts.filter(e=>e.errors.length>0);
+  const ok=drafts.filter(e=>e.errors.length===0);
+  const totHT=ok.reduce((s,e)=>s+e.ht,0);
+  const totTVA=ok.reduce((s,e)=>s+e.tva,0);
+  const totTTC=ok.reduce((s,e)=>s+e.ttc,0);
+  const history=EINVOICE_DRAFTS.filter(e=>e.status!=='DRAFT');
+  setContent(`
+  <div class="ph">
+    <div><div class="ptit">🧾 E-Facturation — Factures à transmettre</div><div class="psub">Screen 64 · Réforme sept. 2026 · RP: ${RP_HEALTH.provider} (${RP_HEALTH.status})</div></div>
+    <div style="display:flex;gap:6px">
+      <button class="btn bp" onclick="submitEInvoiceBatch()">📤 Soumettre tout (${ok.length})</button>
+      <button class="btn bs bsm" onclick="navigate('/einvoice/monitoring')">📡 Monitoring</button>
+      <button class="btn bs bsm" onclick="navigate('/einvoice/vat')">📊 Rappr. TVA</button>
+    </div>
+  </div>
+  <div class="sg mb3">
+    <div class="sc"><div class="sl">DRAFTS AUJOURD'HUI</div><div class="sv">${drafts.length}</div><div class="ss">${blocked.length} bloquées</div></div>
+    <div class="sc"><div class="sl">TOTAL HT TRANSMISSIBLE</div><div class="sv" style="color:#2E7D32">${fmt(totHT)}</div><div class="ss">${ok.length} factures</div></div>
+    <div class="sc"><div class="sl">TVA COLLECTÉE</div><div class="sv" style="color:#1565C0">${fmt(totTVA)}</div><div class="ss">taux 20%</div></div>
+    <div class="sc"><div class="sl">TTC TOTAL</div><div class="sv">${fmt(totTTC)}</div><div class="ss">à transmettre au RP</div></div>
+  </div>
+  ${blocked.length?`<div class="card mb2" style="border-left:3px solid #C62828">
+    <div class="muted f11 f7 mb2" style="color:#C62828">⛔ FACTURES BLOQUÉES (${blocked.length}) — erreurs à corriger avant envoi</div>
+    ${blocked.map(e=>`<div style="background:#FEF2F2;border-radius:8px;padding:10px;margin-bottom:6px">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div><span class="f7 mono f12">${e.inv}</span> <span class="muted f11">${e.cust}</span> · <span class="f7">${fmt(e.ttc)} TTC</span></div>
+        <span style="background:#C62828;color:#fff;padding:2px 8px;border-radius:12px;font-size:10px;font-weight:700">BLOQUÉE</span>
+      </div>
+      <div style="margin-top:4px">${e.errors.map(err=>`<div style="font-size:11px;color:#C62828">❌ ${err}</div>`).join('')}</div>
+    </div>`).join('')}
+  </div>`:''}
+  <div class="muted f11 f7 mb2">✅ PRÊTES À TRANSMETTRE (${ok.length})</div>
+  <div class="tw mb3"><table>
+    <thead><tr><th><input type="checkbox" checked onchange="toggleAllEI(this.checked)"></th><th>Facture</th><th>Client</th><th>SIREN</th><th>HT</th><th>TVA</th><th>TTC</th><th>Catégorie</th><th>Contrôles</th></tr></thead>
+    <tbody>${ok.map(e=>`<tr>
+      <td><input type="checkbox" checked class="ei-check" data-id="${e.id}"></td>
+      <td class="mono f7 f12">${e.inv}</td>
+      <td class="f7">${e.cust}</td>
+      <td class="mono f11">${e.siren}</td>
+      <td>${fmt(e.ht)}</td><td>${fmt(e.tva)}</td><td class="f7">${fmt(e.ttc)}</td>
+      <td><span style="background:#E3F2FD;color:#1565C0;padding:2px 6px;border-radius:4px;font-size:10px;font-weight:700">${e.cat}</span></td>
+      <td>${e.warnings.length?e.warnings.map(w=>`<span style="background:#FFF3E0;color:#E65100;padding:1px 6px;border-radius:4px;font-size:10px">⚠ ${w.slice(0,30)}</span>`).join(''):'<span style="color:#2E7D32;font-size:11px">✅ OK</span>'}</td>
+    </tr>`).join('')}</tbody>
+  </table></div>
+
+  <div class="muted f11 f7 mb2">📜 HISTORIQUE TRANSMISSIONS RÉCENTES</div>
+  <div class="tw"><table>
+    <thead><tr><th>Facture</th><th>Client</th><th>Statut RP</th><th>Date</th></tr></thead>
+    <tbody>${history.map(e=>{
+      const stCol={DEPOSITED:'#FF9800',TRANSMITTED:'#1565C0',RECEIVED:'#7B1FA2',ACCEPTED:'#2E7D32',REJECTED:'#C62828'}[e.status]||'#555';
+      const stIcon={DEPOSITED:'📤',TRANSMITTED:'📡',RECEIVED:'📥',ACCEPTED:'✅',REJECTED:'❌'}[e.status]||'?';
+      return `<tr>
+        <td class="mono f7 f12">${e.inv}</td><td class="f7">${e.cust}</td>
+        <td><span style="background:${stCol}18;color:${stCol};padding:2px 8px;border-radius:12px;font-size:10px;font-weight:700">${stIcon} ${e.status}</span></td>
+        <td class="muted f11">${e.date}</td>
+      </tr>`}).join('')}</tbody>
+  </table></div>
+  <div style="margin-top:12px;padding:10px;background:#F5F5FA;border-radius:8px;font-size:11px;color:#888">
+    ℹ️ Soumission auto à 21h00 (EInvoiceFallbackJob) si non transmises manuellement. Factures bloquées exclues de la soumission auto. Pénalité: €15/facture non conforme (plafond €15 000/an).
+  </div>`);
+}
+function toggleAllEI(checked){document.querySelectorAll('.ei-check').forEach(cb=>cb.checked=checked);}
+function submitEInvoiceBatch(){
+  const checked=document.querySelectorAll('.ei-check:checked');
+  const ids=[...checked].map(c=>c.dataset.id);
+  if(!ids.length){toast('Aucune facture sélectionnée','error');return;}
+  EINVOICE_DRAFTS.forEach(e=>{if(ids.includes(e.id)&&e.errors.length===0)e.status='DEPOSITED';});
+  toast(`✅ ${ids.length} facture(s) transmise(s) au RP ${RP_HEALTH.provider} → statut DEPOSITED`);
+  screenEInvoiceDrafts();
+}
+
+// ═══ SCREEN 65 — VAT Reconciliation Dashboard ═══════════════════
+function screenVATReconciliation(){
+  const cur=VAT_RECON[0];
+  const totalComputed=(cur.b2b_vat+cur.b2c_vat+cur.intra_eu_vat-cur.cn_vat);
+  const disc=Math.abs(totalComputed-cur.declared);
+  const discOk=disc<=1;
+  setContent(`
+  <div class="ph">
+    <div><div class="ptit">📊 Rapprochement TVA</div><div class="psub">Screen 65 · Période ${cur.period} · Taux ${cur.rate}%</div></div>
+    <div style="display:flex;gap:6px">
+      <button class="btn bs bsm" onclick="navigate('/einvoice/drafts')">🧾 E-Factures</button>
+      <button class="btn bs bsm" onclick="navigate('/einvoice/monitoring')">📡 Monitoring</button>
+    </div>
+  </div>
+  <div class="sg mb3">
+    <div class="sc" style="border-left:3px solid #1565C0"><div class="sl">TVA B2B (factures RP)</div><div class="sv" style="color:#1565C0">${fmt(cur.b2b_vat)}</div></div>
+    <div class="sc" style="border-left:3px solid #7B1FA2"><div class="sl">TVA B2C (e-reporting)</div><div class="sv" style="color:#7B1FA2">${fmt(cur.b2c_vat)}</div></div>
+    <div class="sc" style="border-left:3px solid #E65100"><div class="sl">TVA Intra-UE (autoliq.)</div><div class="sv" style="color:#E65100">${fmt(cur.intra_eu_vat)}</div></div>
+    <div class="sc" style="border-left:3px solid #C62828"><div class="sl">Avoirs (déduit)</div><div class="sv" style="color:#C62828">-${fmt(cur.cn_vat)}</div></div>
+  </div>
+
+  <div class="g2 mb3" style="align-items:start">
+    <div class="card" style="border-left:3px solid ${discOk?'#2E7D32':'#C62828'}">
+      <div class="muted f11 f7 mb2">CONTRÔLE DE COHÉRENCE</div>
+      <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #F0F0F4"><span>TVA B2B collectée</span><span class="f7">${fmt(cur.b2b_vat)}</span></div>
+      <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #F0F0F4"><span>TVA B2C collectée</span><span class="f7">${fmt(cur.b2c_vat)}</span></div>
+      <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #F0F0F4"><span>TVA Intra-UE (autoliquidation)</span><span class="f7">${fmt(cur.intra_eu_vat)}</span></div>
+      <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #F0F0F4"><span>Avoirs émis</span><span class="f7" style="color:#C62828">-${fmt(cur.cn_vat)}</span></div>
+      <div style="display:flex;justify-content:space-between;padding:10px 0;font-weight:800;font-size:15px;border-top:2px solid #E8E8EC"><span>TOTAL CALCULÉ</span><span>${fmt(totalComputed)}</span></div>
+      <div style="display:flex;justify-content:space-between;padding:8px 0"><span>Déclaré (CA3)</span><span class="f7">${fmt(cur.declared)}</span></div>
+      <div style="display:flex;justify-content:space-between;padding:10px;margin-top:8px;border-radius:8px;background:${discOk?'#E8F5E9':'#FEF2F2'};font-weight:800">
+        <span>${discOk?'✅ AUCUN ÉCART':'❌ ÉCART DÉTECTÉ'}</span>
+        <span style="color:${discOk?'#2E7D32':'#C62828'}">${discOk?'€0.00':'€'+disc.toFixed(2)}</span>
+      </div>
+      ${!discOk?'<div style="margin-top:6px;font-size:11px;color:#C62828;font-weight:600">⚠ Alerte rouge si écart > €1. Vérifier CA3 lignes 03/04/05 pour autoliquidation intra-UE.</div>':''}
+    </div>
+    <div>
+      <div class="card mb2">
+        <div class="muted f11 f7 mb2">HISTORIQUE PAR PÉRIODE</div>
+        <div class="tw"><table>
+          <thead><tr><th>Période</th><th>B2B</th><th>B2C</th><th>Intra-UE</th><th>Avoirs</th><th>Total</th><th>Écart</th></tr></thead>
+          <tbody>${VAT_RECON.map(v=>{
+            const tot=v.b2b_vat+v.b2c_vat+v.intra_eu_vat-v.cn_vat;
+            const d=Math.abs(tot-v.declared);
+            return `<tr>
+              <td class="f7 mono">${v.period}</td>
+              <td>${fmt(v.b2b_vat)}</td><td>${fmt(v.b2c_vat)}</td><td>${fmt(v.intra_eu_vat)}</td>
+              <td style="color:#C62828">-${fmt(v.cn_vat)}</td>
+              <td class="f7">${fmt(tot)}</td>
+              <td><span style="color:${d<=1?'#2E7D32':'#C62828'};font-weight:700">${d<=1?'✅':'❌ €'+d.toFixed(2)}</span></td>
+            </tr>`}).join('')}</tbody>
+        </table></div>
+      </div>
+      <div class="card">
+        <div class="muted f11 f7 mb2">⚠ RAPPEL AUTOLIQUIDATION INTRA-UE</div>
+        <div style="font-size:12px;color:#555;line-height:1.6">
+          Les achats fournisseurs Pologne (BV PSH, etc.) génèrent de l'<b>autoliquidation</b>.<br>
+          TVA déductible = TVA collectée → impact nul sur le solde CA3.<br>
+          DGFiP vérifie les lignes <b>03 / 04 / 05</b> de la CA3.<br>
+          Le montant <b>${fmt(cur.intra_eu_vat)}</b> doit figurer en lignes 03 ET 05.
+        </div>
+      </div>
+    </div>
+  </div>`);
+}
+
+// ═══ SCREEN 66 — E-Reporting Batch Monitoring ═══════════════════
+function screenEReportingMonitor(){
+  const b2bTx=EINVOICE_TRANSMISSIONS.filter(t=>t.type==='B2B');
+  const b2cTx=EINVOICE_TRANSMISSIONS.filter(t=>t.type==='B2C_REPORTING');
+  const euTx=EINVOICE_TRANSMISSIONS.filter(t=>t.type==='INTRA_EU_REPORTING');
+  const failedTx=EINVOICE_TRANSMISSIONS.filter(t=>t.status==='FAILED');
+  const lastB2C=b2cTx[0];const lastEU=euTx[0];
+  const drafts24h=EINVOICE_DRAFTS.filter(e=>e.status==='DRAFT');
+  const alerts=[];
+  if(failedTx.length)alerts.push({sev:'CRITICAL',msg:`${failedTx.length} transmission(s) échouée(s) — retry en cours`,icon:'❌'});
+  if(drafts24h.length>2)alerts.push({sev:'WARNING',msg:`${drafts24h.length} factures DRAFT > 24h — soumission auto à 21h`,icon:'⏳'});
+  if(lastB2C&&lastB2C.date<'20/02')alerts.push({sev:'CRITICAL',msg:'E-reporting B2C: dernière transmission > 10 jours',icon:'🚨'});
+  if(RP_HEALTH.status!=='OK')alerts.push({sev:'CRITICAL',msg:'RP injoignable — vérifier connexion',icon:'📡'});
+  setContent(`
+  <div class="ph">
+    <div><div class="ptit">📡 Monitoring E-Facturation</div><div class="psub">Screen 66 · RP: ${RP_HEALTH.provider} · Uptime: ${RP_HEALTH.uptime}</div></div>
+    <div style="display:flex;gap:6px">
+      <button class="btn bs bsm" onclick="navigate('/einvoice/drafts')">🧾 E-Factures</button>
+      <button class="btn bs bsm" onclick="navigate('/einvoice/vat')">📊 Rappr. TVA</button>
+    </div>
+  </div>
+
+  <!-- RP Health -->
+  <div class="card mb2" style="border-left:3px solid ${RP_HEALTH.status==='OK'?'#2E7D32':'#C62828'}">
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <div>
+        <div class="f7" style="font-size:15px">${RP_HEALTH.status==='OK'?'🟢':'🔴'} Plateforme RP — ${RP_HEALTH.provider}</div>
+        <div class="muted f11">Dernier check: ${RP_HEALTH.lastCheck} · Latence: ${RP_HEALTH.latency} · Uptime: ${RP_HEALTH.uptime}</div>
+      </div>
+      <button class="btn bs bsm" onclick="toast('Healthcheck OK — '+RP_HEALTH.latency,'info')">🔄 Ping</button>
+    </div>
+  </div>
+
+  <!-- Alertes -->
+  ${alerts.length?`<div class="card mb2" style="border-left:3px solid #C62828">
+    <div class="muted f11 f7 mb2" style="color:#C62828">🚨 ALERTES ACTIVES (${alerts.length})</div>
+    ${alerts.map(a=>`<div style="background:${a.sev==='CRITICAL'?'#FEF2F2':'#FFF3E0'};padding:10px;border-radius:8px;margin-bottom:6px;display:flex;align-items:center;gap:8px">
+      <span style="font-size:18px">${a.icon}</span>
+      <div><div class="f7 f12" style="color:${a.sev==='CRITICAL'?'#C62828':'#E65100'}">${a.sev}</div><div style="font-size:12px">${a.msg}</div></div>
+    </div>`).join('')}
+  </div>`:`<div class="card mb2" style="border-left:3px solid #2E7D32"><div style="color:#2E7D32;font-weight:700">✅ Aucune alerte active — tous les flux sont opérationnels</div></div>`}
+
+  <!-- KPI Cards -->
+  <div class="sg mb3">
+    <div class="sc"><div class="sl">B2B TRANSMISES (mois)</div><div class="sv" style="color:#1565C0">${b2bTx.reduce((s,t)=>s+t.count,0)}</div><div class="ss">${fmt(b2bTx.reduce((s,t)=>s+t.ht,0))} HT</div></div>
+    <div class="sc"><div class="sl">B2C E-REPORTING</div><div class="sv" style="color:#7B1FA2">${lastB2C?lastB2C.date:'—'}</div><div class="ss">Dernier batch</div></div>
+    <div class="sc"><div class="sl">INTRA-UE E-REPORTING</div><div class="sv" style="color:#E65100">${lastEU?lastEU.date:'—'}</div><div class="ss">${euTx.reduce((s,t)=>s+t.count,0)} factures</div></div>
+    <div class="sc" style="${failedTx.length?'border:2px solid #C62828':''}"><div class="sl">ÉCHECS</div><div class="sv" style="color:${failedTx.length?'#C62828':'#2E7D32'}">${failedTx.length}</div><div class="ss">${failedTx.length?'retry auto 30min':'Aucun échec'}</div></div>
+  </div>
+
+  <!-- Transmission Log -->
+  <div class="muted f11 f7 mb2">📋 LOG TRANSMISSIONS</div>
+  <div class="tw mb3"><table>
+    <thead><tr><th>Date</th><th>Type</th><th>Factures</th><th>Total HT</th><th>TVA</th><th>Code RP</th><th>Statut</th><th>Retry</th></tr></thead>
+    <tbody>${EINVOICE_TRANSMISSIONS.map(t=>{
+      const tCol={B2B:'#1565C0',B2C_REPORTING:'#7B1FA2',INTRA_EU_REPORTING:'#E65100'}[t.type]||'#555';
+      const tLabel={B2B:'B2B',B2C_REPORTING:'B2C',INTRA_EU_REPORTING:'Intra-UE'}[t.type];
+      const sCol={OK:'#2E7D32',FAILED:'#C62828',RETRYING:'#E65100'}[t.status];
+      return `<tr style="${t.status==='FAILED'?'background:#FEF2F2':''}">
+        <td class="mono f11">${t.date}</td>
+        <td><span style="background:${tCol}18;color:${tCol};padding:2px 8px;border-radius:12px;font-size:10px;font-weight:700">${tLabel}</span></td>
+        <td class="f7">${t.count||'—'}</td>
+        <td>${fmt(t.ht)}</td><td>${fmt(t.vat)}</td>
+        <td class="mono f11" style="color:${t.rp_code===200?'#2E7D32':'#C62828'}">${t.rp_code}</td>
+        <td><span style="color:${sCol};font-weight:700;font-size:11px">${t.status}</span></td>
+        <td>${t.retry>0?`<span style="color:#C62828;font-weight:700">${t.retry}/3</span>`:'—'}</td>
+      </tr>`}).join('')}</tbody>
+  </table></div>
+
+  <!-- Jobs & Schedule -->
+  <div class="g2">
+    <div class="card">
+      <div class="muted f11 f7 mb2">⏰ JOBS PLANIFIÉS</div>
+      ${[
+        ['EInvoiceFallbackJob','21h00 (quotidien)','Soumission auto des DRAFT non envoyées','OK','27/02 21:00'],
+        ['EReportingBatchJob','1er/11/21 du mois à 05h00','B2C agrégés + factures intra-UE','OK','21/02 05:00'],
+        ['RPHealthcheckJob','Toutes les 30 min','Ping RP /health',RP_HEALTH.status,'28/02 14:32'],
+        ['ReportRefreshJob','03h30 (quotidien)','REFRESH MATERIALIZED VIEWs','OK','28/02 03:30'],
+        ['SupplierScoreJob','Lundi 04h00','Calcul score fiabilité fournisseurs','OK','24/02 04:00'],
+      ].map(([name,sched,desc,status,last])=>`<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #F0F0F4">
+        <div><div class="f7 f12">${name}</div><div class="muted f11">${desc}</div></div>
+        <div style="text-align:right"><div class="mono f11">${sched}</div><div style="font-size:10px;color:${status==='OK'?'#2E7D32':'#C62828'}">${status} · ${last}</div></div>
+      </div>`).join('')}
+    </div>
+    <div class="card">
+      <div class="muted f11 f7 mb2">📊 PÉNALITÉS POTENTIELLES (rappel)</div>
+      ${[
+        ['Pas de Plateforme Enregistrée','€500 puis €1 000/trimestre'],
+        ['Facture non conforme','€15/facture (plafond €15 000/an)'],
+        ['E-reporting manquant','€250/transmission (plafond €15 000/an)'],
+      ].map(([v,p])=>`<div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #F0F0F4">
+        <span style="font-size:12px">${v}</span>
+        <span style="font-size:12px;font-weight:700;color:#C62828">${p}</span>
+      </div>`).join('')}
+      <div style="margin-top:8px;font-size:11px;color:#888">Réforme applicable au 1er septembre 2026. Votre ERP envoie du JSON → le RP génère Factur-X.</div>
+    </div>
+  </div>`);
+}
+
+// ═══ SIREN Verification (integrated into customer creation) ═══════
+function verifySIREN(inputId, resultId){
+  const siren=(Q(inputId)||{value:''}).value.replace(/\s/g,'');
+  const res=Q(resultId);
+  if(!res)return;
+  if(!siren||siren.length!==9||!/^\d{9}$/.test(siren)){
+    res.innerHTML='<div style="color:#C62828;font-size:11px">❌ SIREN invalide — 9 chiffres requis</div>';
+    return;
+  }
+  res.innerHTML='<div style="color:#1565C0;font-size:11px">🔍 Vérification INSEE en cours...</div>';
+  setTimeout(()=>{
+    const cached=SIREN_CACHE[siren];
+    if(cached){
+      const vatKey=String((12+3*(parseInt(siren)%97))%97).padStart(2,'0');
+      const vatId='FR'+vatKey+siren;
+      res.innerHTML=`<div style="background:#E8F5E9;border-radius:8px;padding:10px;margin-top:6px">
+        <div style="color:#2E7D32;font-weight:700;margin-bottom:4px">✅ Entreprise trouvée (INSEE)</div>
+        <div style="font-size:12px"><b>${cached.name}</b></div>
+        <div style="font-size:11px;color:#555">SIRET: <span class="mono">${cached.siret}</span></div>
+        <div style="font-size:11px;color:#555">Adresse: ${cached.addr}</div>
+        <div style="font-size:11px;color:#555">TVA Intra-UE: <span class="mono f7">${vatId}</span> (auto-calculé)</div>
+        <div style="font-size:11px;color:${cached.active?'#2E7D32':'#C62828'}">${cached.active?'✅ Entreprise active':'⚠ Entreprise fermée'}</div>
+      </div>`;
+      // Auto-fill fields if they exist
+      const nameF=Q('nc-name')||Q('nb2b-name');if(nameF&&!nameF.value)nameF.value=cached.name;
+      const siretF=Q('nc-siret')||Q('nb2b-siret');if(siretF)siretF.value=cached.siret;
+      const vatF=Q('nc-vat');if(vatF)vatF.value=vatId;
+      const addrF=Q('nc-addr');if(addrF)addrF.value=cached.addr;
+    } else {
+      res.innerHTML=`<div style="background:#FFF3E0;border-radius:8px;padding:10px;margin-top:6px">
+        <div style="color:#E65100;font-weight:700">⚠ SIREN non trouvé dans le cache</div>
+        <div style="font-size:11px;color:#888">En production: appel API INSEE en temps réel. Vérifiez le SIREN saisi.</div>
+      </div>`;
+    }
+  },600);
+}
 initLogin();
 </script>
 </body>
