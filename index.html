@@ -214,10 +214,10 @@ let ORDERS=[
   {id:'o6',num:'ORD-2026-00182',cust:'Garage Martin',status:'PENDING_APPROVAL',lines:4,ht:892,ttc:1070.4,date:'26/02 14:22',pay:'CREDIT',src:'B2B',delivery:'PARTIAL',orderLines:[{n:'GKN Transmission',sku:'TRX-GKN-019',qty:1,uht:228,src:'EXT',st:'AWAITING_APPROVAL',delivered:0},{n:'ZF Crémaillère',sku:'STE-ZF-021',qty:1,uht:318,src:'EXT',st:'AWAITING_APPROVAL',delivered:0},{n:'Valeo Radiateur',sku:'RAD-VAL-013',qty:2,uht:86.4,src:'EXT',st:'AWAITING_APPROVAL',delivered:0},{n:'Sachs Jambe de Force',sku:'SUS-SAC-018',qty:2,uht:116.6,src:'INT',st:'AWAITING_APPROVAL',delivered:0}]},
 ];
 let CUSTOMERS=[
-  {id:'c1',n:'Garage Martin',siret:'44832977400012',grp:'Gold',lim:5000,bal:1250,ph:'+33 1 42 33 55 77',em:'contact@garagemartin.fr',disc:15,cof:null,vat:'FR12448329774'},
-  {id:'c2',n:'Auto Service Express',siret:'52931478200035',grp:'Silver',lim:3000,bal:820,ph:'+33 1 55 12 88 99',em:'office@ase.fr',disc:10,cof:2.3,vat:'FR52529314782'},
-  {id:'c3',n:'Dupont Carrosserie',siret:'38127654900019',grp:'Bronze',lim:1500,bal:300,ph:'+33 1 48 77 22 11',em:'info@dupont-carrosserie.fr',disc:5,cof:null,vat:'FR38381276549'},
-  {id:'c4',n:'MechaPro Lyon',siret:'91847362500028',grp:'Gold',lim:8000,bal:3200,ph:'+33 4 72 33 44 55',em:'orders@mechapro.fr',disc:18,cof:2.1,vat:'FR91918473625'},
+  {id:'c1',n:'Garage Martin',siret:'44832977400012',siren:'448329774',grp:'Gold',lim:5000,bal:1250,ph:'+33 1 42 33 55 77',em:'contact@garagemartin.fr',disc:15,cof:null,vat:'FR12448329774',addrBill:'12 rue des Lilas, 93100 Montreuil',addrDeliv:'ZA des Prés, 93200 Saint-Denis'},
+  {id:'c2',n:'Auto Service Express',siret:'52931478200035',siren:'529314782',grp:'Silver',lim:3000,bal:820,ph:'+33 1 55 12 88 99',em:'office@ase.fr',disc:10,cof:2.3,vat:'FR52529314782',addrBill:'45 av. de la République, 75011 Paris',addrDeliv:''},
+  {id:'c3',n:'Dupont Carrosserie',siret:'38127654900019',siren:'381276549',grp:'Bronze',lim:1500,bal:300,ph:'+33 1 48 77 22 11',em:'info@dupont-carrosserie.fr',disc:5,cof:null,vat:'FR38381276549',addrBill:'22 bd Voltaire, 93300 Aubervilliers',addrDeliv:''},
+  {id:'c4',n:'MechaPro Lyon',siret:'91847362500028',siren:'918473625',grp:'Gold',lim:8000,bal:3200,ph:'+33 4 72 33 44 55',em:'orders@mechapro.fr',disc:18,cof:2.1,vat:'FR91918473625',addrBill:'8 rue Garibaldi, 69003 Lyon',addrDeliv:'15 ZI des Platières, 69400 Villefranche'},
 ];
 let INVOICES=[
   {id:'i1',num:'INV-2026-00312',cust:'Garage Martin',status:'PAID',ht:285.6,ttc:342.72,date:'27/02',ord:'ORD-2026-00185'},
@@ -2460,8 +2460,24 @@ function newCustomer(){
     <div><label class="fl">TÉLÉPHONE</label><input class="fi" id="nc-phone" placeholder="+33 1XX XX XX XX"></div>
     <div><label class="fl">VILLE</label><input class="fi" id="nc-city" placeholder=""></div>
   </div>
-  <!-- Adresse complète -->
-  <div style="margin-bottom:16px"><label class="fl">ADRESSE COMPLÈTE</label><input class="fi" id="nc-addr" style="width:100%"></div>
+  <!-- Adresse de FACTURATION (auto-remplie INSEE) -->
+  <div style="margin-bottom:12px">
+    <label class="fl">📋 ADRESSE DE FACTURATION * <span style="font-size:10px;color:#888">(auto-remplie par INSEE)</span></label>
+    <input class="fi" id="nc-addr-billing" style="width:100%" placeholder="12 rue des Lilas, 93100 Montreuil">
+  </div>
+  <!-- Toggle livraison = facturation -->
+  <div style="margin-bottom:12px">
+    <label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:12px;padding:8px 12px;background:#F0F7FF;border-radius:8px;border:1px solid #BBDEFB">
+      <input type="checkbox" id="nc-same-addr" checked onchange="toggleDeliveryAddr()">
+      <span>Adresse de livraison <b>identique</b> à l'adresse de facturation</span>
+    </label>
+  </div>
+  <!-- Adresse de LIVRAISON (masquée par défaut) -->
+  <div id="nc-delivery-block" style="display:none;margin-bottom:16px;padding:12px;background:#FFF3E0;border-radius:8px;border:1px solid #FFE0B2">
+    <label class="fl" style="color:#E65100">🚚 ADRESSE DE LIVRAISON * <span style="font-size:10px">(obligatoire si différente — bloquant e-facturation)</span></label>
+    <input class="fi" id="nc-addr-delivery" style="width:100%" placeholder="ZA des Prés, 93200 Saint-Denis">
+    <div style="font-size:10px;color:#E65100;margin-top:4px">⚠ Si vide et différente de facturation → facture e-invoicing bloquée (Section 58)</div>
+  </div>
 
   <!-- Séparateur conditions commerciales -->
   <div style="font-size:12px;font-weight:700;color:#333;margin-bottom:12px;padding-top:4px;border-top:1px solid #E0E0E6">Conditions commerciales</div>
@@ -2562,17 +2578,25 @@ function ncCheckLimit(el,max){
 function createCustomer(){
   const n=Q('nc-name')?.value||Q('cn')?.value||'';
   const siret=Q('nc-siret')?.value||Q('csiret')?.value||'';
+  const siren=Q('nc-siren')?.value?.replace(/\s/g,'')||siret?.slice(0,9)||'';
+  const vat=Q('nc-vat')?.value||'';
   const type=Q('nc-type')?.value||'B2B';
   if(!n){toast('Remplissez le nom/société','error');return;}
   if(type==='B2B'&&!siret){toast('SIRET obligatoire pour un compte B2B','error');return;}
+  if(type==='B2B'&&!vat){toast('TVA intra-UE manquante — Vérifiez le SIREN via INSEE','warning');}
   const grp=Q('nc-grille')?.value||'Bronze';
   const lim=parseFloat(Q('nc-limit')?.value)||0;
   const disc=grp==='Gold'?15:grp==='Silver'?10:grp==='Standard'?5:0;
   const em=Q('nc-email')?.value||Q('cem')?.value||'';
   const ph=Q('nc-phone')?.value||Q('cph')?.value||'';
-  CUSTOMERS=[{id:'c'+Date.now(),n,siret,grp,lim,bal:0,ph,em,disc,cof:null,vat:'',type},...CUSTOMERS];
+  const addrBill=Q('nc-addr-billing')?.value||Q('nc-addr')?.value||'';
+  const sameAddr=Q('nc-same-addr')?.checked!==false;
+  const addrDeliv=sameAddr?'':Q('nc-addr-delivery')?.value||'';
+  if(type==='B2B'&&!addrBill){toast('Adresse de facturation obligatoire','error');return;}
+  if(!sameAddr&&!addrDeliv){toast('Adresse de livraison obligatoire si différente de facturation (bloquant e-facturation §58)','error');return;}
+  CUSTOMERS=[{id:'c'+Date.now(),n,siret,siren,grp,lim,bal:0,ph,em,disc,cof:null,vat,type,addrBill,addrDeliv},...CUSTOMERS];
   closeModal();
-  toast(`${n} créé${type==='B2B'?' · Invitation B2B envoyée':''}`)
+  toast(`${n} créé${type==='B2B'?' · Invitation B2B envoyée':''}${addrDeliv?' · Livraison: '+addrDeliv:''}`)
   screenCustomers();
 }
 // ═══ CUSTOMER DETAIL ════════════════════════════════════════
@@ -2615,8 +2639,19 @@ function cdTab(tab,el){
   const el2=Q('cdcontent');
   if(tab==='info'){
     el2.innerHTML=`<div class="card"><div class="g2">
-      ${[['SIRET',c.siret],['TVA',c.vat||'—'],['Téléphone',c.ph||'—'],['Email',c.em||'—'],['Plafond crédit',fmt(c.lim)],['Solde',fmt(c.bal)],['Remise',c.disc+'%'],['Conditions',(PRICING_GRIDS[c.grp]||PRICING_GRIDS.Standard).paymentTerms]].map(([k,v])=>`
+      ${[['SIREN',c.siren||c.siret?.slice(0,9)||'—'],['SIRET',c.siret],['TVA Intra-UE',c.vat||'—'],['Téléphone',c.ph||'—'],['Email',c.em||'—'],['Plafond crédit',fmt(c.lim)],['Solde',fmt(c.bal)],['Remise',c.disc+'%'],['Conditions',(PRICING_GRIDS[c.grp]||PRICING_GRIDS.Standard).paymentTerms]].map(([k,v])=>`
         <div style="background:#F5F5FA;border-radius:8px;padding:11px"><div class="muted f11 f7 mb1">${k}</div><div class="f13 f7 mono">${v}</div></div>`).join('')}
+    </div>
+    <!-- Adresses facturation / livraison -->
+    <div class="g2" style="margin-top:12px">
+      <div style="background:#E3F2FD;border-radius:8px;padding:12px;border-left:3px solid #1565C0">
+        <div style="font-size:11px;font-weight:700;color:#1565C0;margin-bottom:4px">📋 ADRESSE DE FACTURATION</div>
+        <div style="font-size:12px;font-weight:600">${c.addrBill||'Non renseignée'}</div>
+      </div>
+      <div style="background:${c.addrDeliv?'#FFF3E0':'#F5F5FA'};border-radius:8px;padding:12px;border-left:3px solid ${c.addrDeliv?'#E65100':'#ccc'}">
+        <div style="font-size:11px;font-weight:700;color:${c.addrDeliv?'#E65100':'#888'};margin-bottom:4px">🚚 ADRESSE DE LIVRAISON</div>
+        <div style="font-size:12px;font-weight:600">${c.addrDeliv||'<span style=color:#2E7D32>✓ Identique à la facturation</span>'}</div>
+      </div>
     </div>
     <div style="display:flex;gap:8px;margin-top:14px">
       <button class="btn bs bsm" onclick="toast('Mode édition — Sauvegarde BD')">✏ Modifier</button>
@@ -5530,6 +5565,13 @@ function screenEReportingMonitor(){
   </div>`);
 }
 
+function toggleDeliveryAddr(){
+  const same=Q('nc-same-addr');
+  const block=Q('nc-delivery-block');
+  if(!block)return;
+  block.style.display=same&&same.checked?'none':'block';
+}
+
 // ═══ SIREN Verification (integrated into customer creation) ═══════
 function verifySIREN(inputId, resultId){
   const siren=(Q(inputId)||{value:''}).value.replace(/\s/g,'');
@@ -5557,7 +5599,7 @@ function verifySIREN(inputId, resultId){
       const nameF=Q('nc-name')||Q('nb2b-name');if(nameF&&!nameF.value)nameF.value=cached.name;
       const siretF=Q('nc-siret')||Q('nb2b-siret');if(siretF)siretF.value=cached.siret;
       const vatF=Q('nc-vat');if(vatF)vatF.value=vatId;
-      const addrF=Q('nc-addr');if(addrF)addrF.value=cached.addr;
+      const addrF=Q('nc-addr-billing')||Q('nc-addr');if(addrF)addrF.value=cached.addr;
     } else {
       res.innerHTML=`<div style="background:#FFF3E0;border-radius:8px;padding:10px;margin-top:6px">
         <div style="color:#E65100;font-weight:700">⚠ SIREN non trouvé dans le cache</div>
